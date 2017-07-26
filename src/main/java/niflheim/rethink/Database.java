@@ -13,11 +13,10 @@ import static com.rethinkdb.RethinkDB.r;
 public class Database {
     private static final Logger LOG = LoggerFactory.getLogger(Database.class);
     private final Connection conn;
-    private final String name, gt, ut;
+    private final String gt, ut;
 
     public Database(String name, String gt, String ut) {
         Connection conn = null;
-        this.name = name;
         this.gt = gt;
         this.ut = ut;
 

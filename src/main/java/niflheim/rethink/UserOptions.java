@@ -1,5 +1,7 @@
 package niflheim.rethink;
 
+import com.sun.istack.internal.NotNull;
+
 import javax.annotation.Nullable;
 import java.beans.ConstructorProperties;
 
@@ -13,6 +15,11 @@ public class UserOptions {
     @ConstructorProperties("id")
     public UserOptions(String id) {
         this.id = id;
+    }
+
+    @NotNull
+    public String getId() {
+        return id;
     }
 
     @Nullable
