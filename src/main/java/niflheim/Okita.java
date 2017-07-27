@@ -79,7 +79,7 @@ public class Okita {
         return null;
     }
 
-    private static void init(niflheim.listeners.EventListener listener) {
+    private static void init(EventListener listener) {
         for (int i = 0; i < Settings.SHARDS; i++) {
             try {
                 shards.add(i, new Shard(i, listener));

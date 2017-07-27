@@ -20,7 +20,8 @@ import niflheim.utils.Settings;
 public class EventListener extends ListenerAdapter {
     @Override
     public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
-
+        //placeholder
+        event.getChannel().sendMessage("Temporary Unavailable").queue();
     }
 
     @Override
