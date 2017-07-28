@@ -15,7 +15,6 @@ public class GuildOptions implements ManagedObject {
     private String goodbye;
     private String messageChannel;
 
-    private boolean autodelete = false;
     private boolean welcomeEnable = false;
     private boolean goodbyeEnable = false;
 
@@ -57,10 +56,6 @@ public class GuildOptions implements ManagedObject {
         return messageChannel;
     }
 
-    public boolean isAutodelete() {
-        return autodelete;
-    }
-
     public boolean isWelcomeEnable() {
         return welcomeEnable;
     }
@@ -87,10 +82,6 @@ public class GuildOptions implements ManagedObject {
 
     public void setMessageChannel(String messageChannel) {
         this.messageChannel = messageChannel;
-    }
-
-    public void setAutodelete(boolean autodelete) {
-        this.autodelete = autodelete;
     }
 
     public void setWelcomeEnable(boolean welcomeEnable) {
