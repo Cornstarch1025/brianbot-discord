@@ -34,12 +34,7 @@ public class TrackScheduler extends AudioEventAdapter {
         player.startTrack(track, false);
 
         String content = old + " has finished playing. " + (track != null ? "Now playing " + track.getInfo().title + "." : "The Music Queue has concluded.");
-
-        if (activeChannel != null)
-            activeChannel.sendMessage(trackEmbed(content)).queue(m -> {
-                if (activeChannel.getGuild().getSelfMember().hasPermission(activeChannel, Permission.MESSAGE_MANAGE))
-                    m.delete().queueAfter(5, TimeUnit.SECONDS);
-            });
+        sendMessage(content);
     }
 
     public void skipTrack() {
@@ -47,12 +42,7 @@ public class TrackScheduler extends AudioEventAdapter {
         player.startTrack(track, false);
 
         String content = player.getPlayingTrack().getInfo().title + " has been skipped. " + (track != null ? "Now playing " + track.getInfo().title + "." : "The Music Queue has concluded.");
-
-        if (activeChannel != null)
-            activeChannel.sendMessage(trackEmbed(content)).queue(m -> {
-                if (activeChannel.getGuild().getSelfMember().hasPermission(activeChannel, Permission.MESSAGE_MANAGE))
-                    m.delete().queueAfter(5, TimeUnit.SECONDS);
-            });
+        sendMessage(content);
     }
 
     @Override
@@ -70,5 +60,13 @@ public class TrackScheduler extends AudioEventAdapter {
                 .setTitle("Music Player")
                 .setDescription(content)
                 .build();
+    }
+
+    private void sendMessage(String content) {
+        if (activeChannel != null)
+            activeChannel.sendMessage(trackEmbed(content)).queue(m -> {
+                if (activeChannel.getGuild().getSelfMember().hasPermission(activeChannel, Permission.MESSAGE_MANAGE))
+                    m.delete().queueAfter(5, TimeUnit.SECONDS);
+            });
     }
 }
