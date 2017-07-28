@@ -20,19 +20,25 @@ public class Database {
         this.gt = gt;
         this.ut = ut;
 
-        try {
-            conn = r.connection().hostname("localhost").port(28015).connect();
+        while (conn == null) {
+            try {
+                conn = r.connection().hostname("localhost").port(28015).connect();
 
-            if (r.dbList().<List<String>>run(conn).contains(name)) {
-                LOG.info("Database connection established.");
-                conn.use(name);
-            } else {
-                LOG.info("Rethink Database " + name + " not present, creating...");
-                r.dbCreate(name).runNoReply(conn);
+                if (r.dbList().<List<String>>run(conn).contains(name)) {
+                    LOG.info("Database connection established.");
+                    conn.use(name);
+                } else {
+                    LOG.info("Rethink Database " + name + " not present, creating...");
+                    r.dbCreate(name).runNoReply(conn);
+                }
+            } catch (ReqlDriverError e) {
+                LOG.error("Rethink Database connection failed. Retrying...", e);
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException ex) {
+                    LOG.error("Interrupted during connection cooldown!");
+                }
             }
-        } catch (ReqlDriverError e) {
-            LOG.error("Rethink Database connection failed.", e);
-            System.exit(0);
         }
 
         if (!(Boolean) r.db(name).tableList().contains(gt).run(conn)) {

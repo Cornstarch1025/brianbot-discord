@@ -22,9 +22,8 @@ public class Okita {
     public static final Logger LOG = LoggerFactory.getLogger(Okita.class);
     public static final Database DATABASE = new Database(Settings.DBNAME, Settings.GUILDS, Settings.USERS);
     public static final DatabaseRegistry registry = new DatabaseRegistry();
-    public static final ArrayList<Shard> shards = new ArrayList<>();
+    public static ArrayList<Shard> shards = new ArrayList<>();
     public static ShardMonitor monitor;
-
 
     public static void main(String[] args) {
         System.out.println("   ___    _      _   _           \n" +
