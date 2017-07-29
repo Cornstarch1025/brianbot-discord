@@ -4,6 +4,8 @@ import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.entities.VoiceChannel;
+import niflheim.audio.MusicCore;
+import niflheim.commands.LoadCommands;
 import niflheim.core.Shard;
 import niflheim.core.ShardMonitor;
 import niflheim.listeners.EventListener;
@@ -22,6 +24,7 @@ public class Okita {
     public static final Logger LOG = LoggerFactory.getLogger(Okita.class);
     public static final Database DATABASE = new Database(Settings.DBNAME, Settings.GUILDS, Settings.USERS);
     public static final DatabaseRegistry registry = new DatabaseRegistry();
+    public static MusicCore musicCore;
     public static ArrayList<Shard> shards = new ArrayList<>();
     public static ShardMonitor monitor;
 
@@ -34,7 +37,9 @@ public class Okita {
                 "                                 ");
 
         init(new EventListener());
-        //init commands
+        LoadCommands.init();
+
+        musicCore = new MusicCore();
 
         monitor = new ShardMonitor();
         monitor.setDaemon(true);
