@@ -21,7 +21,7 @@ public class Context {
         this(event, Okita.registry.ofGuild(event.getGuild().getId()), Okita.registry.ofUser(event.getAuthor().getId()));
     }
 
-    public Context(GuildMessageReceivedEvent event, GuildOptions guildOptions, UserOptions userOptions){
+    public Context(GuildMessageReceivedEvent event, GuildOptions guildOptions, UserOptions userOptions) {
         this.guildOptions = guildOptions;
         this.userOptions = userOptions;
         message = event.getMessage();

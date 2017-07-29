@@ -37,7 +37,7 @@ public class Core {
 
         Command cmd = commands.get(command);
 
-        if (levelCheck(cmd, context) && rateCheck(command, cmd, context) && voiceCheck(cmd, context) && permissionCheck(cmd, context)) {
+        if (levelCheck(cmd, context) && rateCheck(command, context) && voiceCheck(cmd, context) && permissionCheck(cmd, context)) {
             String[] args = context.message.getContent().split("\\s+");
 
             if (args.length > 1)
@@ -67,7 +67,7 @@ public class Core {
         return disabled;
     }
 
-    private static boolean rateCheck(String command, Command cmd, Context context) {
+    private static boolean rateCheck(String command, Context context) {
         if (isRateLimited(context.user, command)) {
             long newCd = cooldowns.get(context.user.getId() + " " + command) - System.currentTimeMillis();
             rateLimit(context.user, command);
