@@ -6,6 +6,7 @@ import niflheim.utils.Settings;
 
 import javax.annotation.Nullable;
 import java.beans.ConstructorProperties;
+import java.util.ArrayList;
 
 public class GuildOptions implements ManagedObject {
     private final String id;

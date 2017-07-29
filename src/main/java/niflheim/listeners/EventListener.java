@@ -14,14 +14,25 @@ import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.core.events.message.priv.PrivateMessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import niflheim.Okita;
+import niflheim.core.Context;
+import niflheim.core.Core;
 import niflheim.rethink.GuildOptions;
 import niflheim.utils.Settings;
 
 public class EventListener extends ListenerAdapter {
     @Override
     public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
-        //placeholder
-        event.getChannel().sendMessage("Temporary Unavailable").queue();
+        if (event.getAuthor().isBot())
+            return;
+
+        GuildOptions options = Okita.registry.ofGuild(event.getGuild().getId());
+        String prefix = Settings.PREFIX;
+
+        if (options.getPrefix() != null)
+            prefix = options.getPrefix();
+
+        if (event.getMessage().getRawContent().startsWith(prefix))
+            Core.onGuild(event.getMessage().getRawContent().split("\\s+")[0].substring(prefix.length()).toLowerCase(), new Context(event));
     }
 
     @Override
