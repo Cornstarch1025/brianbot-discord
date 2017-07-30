@@ -69,6 +69,19 @@ public class Core {
 
     public static void registerCommand(String trigger, Command command){
         commands.put(trigger, command);
+
+        for(String alias: command.getInfo().aliases())
+            commands.put(alias, command);
+    }
+
+    public static boolean setDisabled(String cmd) {
+        if(disabled.contains(cmd)) {
+            disabled.remove(cmd);
+            return false;
+        }
+
+        disabled.add(cmd);
+        return true;
     }
 
     private static boolean rateCheck(String command, Context context) {
