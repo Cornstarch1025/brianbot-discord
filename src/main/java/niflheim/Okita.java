@@ -9,6 +9,7 @@ import niflheim.commands.LoadCommands;
 import niflheim.core.Shard;
 import niflheim.core.ShardMonitor;
 import niflheim.listeners.EventListener;
+import niflheim.listeners.EventWaiter;
 import niflheim.rethink.Database;
 import niflheim.rethink.DatabaseRegistry;
 import niflheim.utils.Settings;
@@ -22,9 +23,10 @@ import java.util.Map;
 
 public class Okita {
     public static final Logger LOG = LoggerFactory.getLogger(Okita.class);
-    public static final Database DATABASE = new Database(Settings.DBNAME, Settings.GUILDS, Settings.USERS);
-    public static final DatabaseRegistry registry = new DatabaseRegistry();
-    public static MusicCore musicCore;
+    public static Database DATABASE = new Database(Settings.DBNAME, Settings.GUILDS, Settings.USERS);
+    public static DatabaseRegistry registry = new DatabaseRegistry();
+    public static EventWaiter waiter = new EventWaiter();
+    public static MusicCore musicCore = new MusicCore();
     public static ArrayList<Shard> shards = new ArrayList<>();
     public static ShardMonitor monitor;
 
@@ -38,8 +40,6 @@ public class Okita {
 
         init(new EventListener());
         LoadCommands.init();
-
-        musicCore = new MusicCore();
 
         monitor = new ShardMonitor();
         monitor.setDaemon(true);
