@@ -13,10 +13,11 @@ import static com.rethinkdb.RethinkDB.r;
 public class Database {
     private static final Logger LOG = LoggerFactory.getLogger(Database.class);
     private final Connection conn;
-    private final String gt, ut;
+    private final String name, gt, ut;
 
     public Database(String name, String gt, String ut) {
         Connection conn = null;
+        this.name = name;
         this.gt = gt;
         this.ut = ut;
 
@@ -64,38 +65,38 @@ public class Database {
 
     @Nullable
     public GuildOptions getGuildOptions(String id) {
-        return isOpen() ? r.table(gt).get(id).run(conn, GuildOptions.class) : null;
+        return isOpen() ? r.db(name).table(ut).get(id).run(conn, GuildOptions.class) : null;
     }
 
     @Nullable
     public UserOptions getUserOptions(String id) {
-        return isOpen() ? r.table(ut).get(id).run(conn, UserOptions.class) : null;
+        return isOpen() ? r.db(name).table(ut).get(id).run(conn, UserOptions.class) : null;
     }
 
     public void saveGuildOptions(GuildOptions guildOptions) {
         if (isOpen())
-            r.table(gt).insert(guildOptions)
+            r.db(name).table(gt).insert(guildOptions)
                     .optArg("conflict", "replace")
                     .runNoReply(conn);
     }
 
     public void deleteGuildOptions(String id) {
         if (isOpen())
-            r.table(gt).get(id)
+            r.db(name).table(gt).get(id)
                     .delete()
                     .runNoReply(conn);
     }
 
     public void saveUserOptions(UserOptions userOptions) {
         if (isOpen())
-            r.table(ut).insert(userOptions)
+            r.db(name).table(ut).insert(userOptions)
                     .optArg("conflict", "replace")
                     .runNoReply(conn);
     }
 
     public void deleteUserOptions(String id) {
         if (isOpen())
-            r.table(ut).get(id)
+            r.db(name).table(ut).get(id)
                     .delete()
                     .runNoReply(conn);
     }

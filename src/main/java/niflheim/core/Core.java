@@ -67,6 +67,10 @@ public class Core {
         return disabled;
     }
 
+    public static void registerCommand(String trigger, Command command){
+        commands.put(trigger, command);
+    }
+
     private static boolean rateCheck(String command, Context context) {
         if (isRateLimited(context.user, command)) {
             long newCd = cooldowns.get(context.user.getId() + " " + command) - System.currentTimeMillis();
@@ -133,7 +137,7 @@ public class Core {
 
     private static void selfDelete(Context context, Message message) {
         if (context.guild.getSelfMember().hasPermission(context.channel, Permission.MESSAGE_MANAGE))
-            message.delete().queueAfter(2, TimeUnit.SECONDS);
+            message.delete().queueAfter(3, TimeUnit.SECONDS);
     }
 
     private static boolean isRateLimited(User user, String command) {
