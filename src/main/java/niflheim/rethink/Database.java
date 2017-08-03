@@ -23,7 +23,7 @@ public class Database {
 
         while (conn == null) {
             try {
-                conn = r.connection().hostname("localhost").port(28015).connect();
+                conn = r.connection().hostname("192.168.1.71").port(28015).connect();
 
                 if (r.dbList().<List<String>>run(conn).contains(name)) {
                     LOG.info("Database connection established.");
@@ -44,12 +44,12 @@ public class Database {
 
         if (!(Boolean) r.db(name).tableList().contains(gt).run(conn)) {
             LOG.info("Table " + gt + " does not exist... creating...");
-            r.db(name).tableCreate("Guilds").runNoReply(conn);
+            r.db(name).tableCreate(gt).runNoReply(conn);
         }
 
         if (!(Boolean) r.db(name).tableList().contains(ut).run(conn)) {
             LOG.info("Table " + ut + " does not exist... creating...");
-            r.db(name).tableCreate("Users").runNoReply(conn);
+            r.db(name).tableCreate(ut).runNoReply(conn);
         }
 
         this.conn = conn;
@@ -65,7 +65,7 @@ public class Database {
 
     @Nullable
     public GuildOptions getGuildOptions(String id) {
-        return isOpen() ? r.db(name).table(ut).get(id).run(conn, GuildOptions.class) : null;
+        return isOpen() ? r.db(name).table(gt).get(id).run(conn, GuildOptions.class) : null;
     }
 
     @Nullable

@@ -101,6 +101,7 @@ public class EventListener extends ListenerAdapter {
     @Override
     public void onGuildLeave(GuildLeaveEvent event) {
         TextChannel logs = Okita.getTextChannelById(Settings.LOGS);
+        Okita.registry.deleteGuild(event.getGuild().getId());
 
         if (logs != null)
             logs.sendMessage("Guild: `" + event.getGuild() + "` ID: `" + event.getGuild().getId() + "` was left!").queue();

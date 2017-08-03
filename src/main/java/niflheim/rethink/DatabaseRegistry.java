@@ -5,6 +5,7 @@ import niflheim.Okita;
 public class DatabaseRegistry {
     public GuildOptions ofGuild(String id) {
         GuildOptions options = Okita.DATABASE.getGuildOptions(id);
+
         return options != null ? options : new GuildOptions(id);
     }
 

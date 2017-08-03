@@ -7,7 +7,7 @@ import java.io.File;
 import java.util.List;
 
 public class Settings {
-    public static final Config CONFIG = ConfigFactory.parseFile(new File("resources/config.conf")).withFallback(ConfigFactory.load("config.conf"));
+    public static final Config CONFIG = ConfigFactory.parseFile(new File("resources/config.conf")).withFallback(ConfigFactory.load("resources/config.conf"));
 
     public static final String NAME = CONFIG.getString("bot.name");
     public static final String TOKEN = CONFIG.getString("bot.token");

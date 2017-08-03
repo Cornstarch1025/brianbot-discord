@@ -4,8 +4,12 @@ import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.*;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 import niflheim.Okita;
+import niflheim.commands.Command;
 import niflheim.rethink.GuildOptions;
 import niflheim.rethink.UserOptions;
+
+import java.text.DateFormat;
+import java.util.Date;
 
 public class Context {
     public final Message message;
@@ -30,5 +34,15 @@ public class Context {
         jda = event.getJDA();
         member = event.getMember();
         user = event.getAuthor();
+    }
+
+    public String time() {
+        Date now = new Date();
+
+        return DateFormat.getDateInstance(DateFormat.FULL).format(now).replaceFirst(",", " ") + " at " + DateFormat.getTimeInstance(DateFormat.LONG).format(now);
+    }
+
+    public void invalid(Command command) {
+        channel.sendMessage("Invalid usage! The correct usage is: `" + command.getInfo().usage() + "`!").queue();
     }
 }

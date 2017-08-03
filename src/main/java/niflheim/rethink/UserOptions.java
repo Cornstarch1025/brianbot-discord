@@ -4,11 +4,13 @@ import com.sun.istack.internal.NotNull;
 
 import javax.annotation.Nullable;
 import java.beans.ConstructorProperties;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class UserOptions {
     private final String id;
     private String fen;
-    private String playlist;
+    private HashMap<String, ArrayList<String>> playlist;
 
     private int level = 0;
 
@@ -28,7 +30,7 @@ public class UserOptions {
     }
 
     @Nullable
-    public String getPlaylist() {
+    public HashMap<String, ArrayList<String>> getPlaylist() {
         return playlist;
     }
 
@@ -40,8 +42,12 @@ public class UserOptions {
         this.fen = fen;
     }
 
-    public void setPlaylist(String playlist) {
-        this.playlist = playlist;
+    public void addPlaylist(String name, ArrayList<String> playlist) {
+        this.playlist.put(name, playlist);
+    }
+
+    public void removePlaylist(String name) {
+        playlist.remove(name);
     }
 
     public void setLevel(int level) {

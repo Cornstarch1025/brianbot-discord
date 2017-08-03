@@ -13,7 +13,7 @@ import java.awt.*;
         usage = ".ping",
         cooldown = 1000L
 )
-public class Ping extends Command{
+public class Ping extends Command {
     public void execute(Context context, String[] args) {
         EmbedBuilder embed = new EmbedBuilder()
                 .setColor(Color.CYAN)

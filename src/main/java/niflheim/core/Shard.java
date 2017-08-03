@@ -73,7 +73,7 @@ public class Shard {
     }
 
     public void revive() {
-        //destry audio connections and audio related stuff
+        //destroy audio connections and audio related stuff
         jda.removeEventListener(eventListener, shardListener);
         jda.shutdown();
 

@@ -65,6 +65,14 @@ public class Okita {
         return users;
     }
 
+    public static Guild getGuildByID(String id) {
+        for (Guild guild : getAllGuilds())
+            if (guild.getId().equalsIgnoreCase(id))
+                return guild;
+
+        return null;
+    }
+
     public static TextChannel getTextChannelById(String id) {
         for (Shard shard : shards)
             for (TextChannel channel : shard.getJda().getTextChannels())
