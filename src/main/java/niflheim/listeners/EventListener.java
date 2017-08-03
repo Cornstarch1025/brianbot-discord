@@ -56,6 +56,7 @@ public class EventListener extends ListenerAdapter {
                 channel.sendMessage(event.getUser().getAsMention() + " " + options.getWelcome()).queue();
             else {
                 options.setMessageChannel(null);
+                options.save();
 
                 event.getGuild().getPublicChannel().sendMessage(event.getUser().getAsMention() + " " + options.getWelcome()).queue();
             }
@@ -66,10 +67,11 @@ public class EventListener extends ListenerAdapter {
 
             if (role == null || !event.getGuild().getSelfMember().canInteract(role) || !event.getGuild().getSelfMember().hasPermission(Permission.MANAGE_ROLES)) {
                 options.setAutorole(null);
+                options.save();
                 return;
             }
 
-            event.getGuild().getController().addSingleRoleToMember(event.getMember(), role).queue();
+            event.getGuild().getController().addSingleRoleToMember(event.getMember(), role).complete();
         }
     }
 
@@ -84,6 +86,7 @@ public class EventListener extends ListenerAdapter {
                 channel.sendMessage(event.getUser().getAsMention() + " " + options.getGoodbye()).queue();
             else {
                 options.setMessageChannel(null);
+                options.save();
 
                 event.getGuild().getPublicChannel().sendMessage(event.getUser().getAsMention() + " " + options.getGoodbye()).queue();
             }

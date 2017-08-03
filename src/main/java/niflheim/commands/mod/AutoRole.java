@@ -10,7 +10,7 @@ import niflheim.core.Context;
 @CommandFrame(
         help = "Sets the autorole for the guild.",
         usage = ".autorole <Role>",
-        cooldown = 3000L,
+        cooldown = 5000L,
         guildOwner = true,
         category = Category.MOD,
         scope = Scope.GUILD,
@@ -19,7 +19,8 @@ import niflheim.core.Context;
 public class AutoRole extends Command {
     public void execute(Context context, String[] args) {
         if (args.length == 0) {
-            context.invalid(this);
+            String msg = context.guildOptions.getAutorole() == null ? "No autorole set for this guild!" : "Guild autorole is set to `" + context.guild.getRoleById(context.guildOptions.getAutorole()) + "`!";
+            context.channel.sendMessage(msg).queue();
             return;
         }
 
@@ -38,7 +39,7 @@ public class AutoRole extends Command {
                 context.channel.sendMessage("No role found!").queue();
                 break;
             case 1:
-                context.guildOptions.setAutorole(role.toString());
+                context.guildOptions.setAutorole(context.guild.getRolesByName(role.toString(), true).get(0).getId());
                 context.guildOptions.save();
                 context.channel.sendMessage("Autorole has been set to `" + role.toString() + "`!").queue();
                 break;

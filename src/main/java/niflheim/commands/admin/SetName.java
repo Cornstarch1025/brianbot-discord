@@ -25,6 +25,6 @@ public class SetName extends Command {
         for (String str : args)
             name.append(str).append(" ");
 
-        context.jda.getSelfUser().getManager().setName(name.toString()).queue(success -> context.channel.sendMessage("Bot's name has been successfully changed.").queue());
+        context.jda.getSelfUser().getManager().setName(name.toString()).queue(success -> context.channel.sendMessage("Successfully changed bot name.").queue());
     }
 }
