@@ -63,7 +63,7 @@ public class Toggle extends Command {
     }
 
     private String toggleCommand(Context context, String name, Command cmd) {
-        if(!cmd.getInfo().toggleable()){
+        if (!cmd.getInfo().toggleable()) {
             context.channel.sendMessage("This command can not be toggled").queue();
             return "";
         }
@@ -72,12 +72,12 @@ public class Toggle extends Command {
         String[] aliases = cmd.getInfo().aliases();
         embed.setTitle("Toggle Command");
 
-        if(Core.setDisabled(name))
+        if (Core.setDisabled(name))
             toggle.append("`" + name + "` and its aliases has been toggled off.").append("\n");
         else
             toggle.append("`" + name + "` and its aliases has been toggled on.").append("\n");
 
-        for(String x: aliases)
+        for (String x : aliases)
             Core.setDisabled(x);
 
         if (context != null) {
@@ -92,7 +92,7 @@ public class Toggle extends Command {
         StringBuilder toggle = new StringBuilder();
         embed.setTitle("Toggle Module");
 
-        for(Map.Entry<String, Command> x: Core.getCommands().entrySet()) {
+        for (Map.Entry<String, Command> x : Core.getCommands().entrySet()) {
             ArrayList<String> aliases = new ArrayList<>(Arrays.asList(x.getValue().getInfo().aliases()));
             if (x.getValue().getInfo().category().equals(category) && !aliases.contains(x.getKey()))
                 toggle.append(toggleCommand(null, x.getKey(), x.getValue()));

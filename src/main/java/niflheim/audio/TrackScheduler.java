@@ -18,10 +18,12 @@ public class TrackScheduler extends AudioEventAdapter {
     private final AudioPlayer player;
     private final Queue<AudioTrack> queue;
     private TextChannel activeChannel;
+    private boolean repeat;
 
     public TrackScheduler(AudioPlayer player) {
         this.player = player;
         this.queue = new LinkedList<>();
+        repeat = false;
     }
 
     public void queue(AudioTrack track) {
@@ -29,15 +31,26 @@ public class TrackScheduler extends AudioEventAdapter {
             queue.offer(track);
     }
 
-    public void nextTrack(String old) {
-        AudioTrack track = queue.poll();
+    public void nextTrack(AudioTrack old) {
+        AudioTrack track;
+        String content = "";
+
+        if (repeat)
+            track = old;
+        else {
+            track = queue.poll();
+            content = old.getInfo().title + " has finished playing. " + (track != null ? "Now playing " + track.getInfo().title + "." : "The Music Queue has concluded.");
+        }
+
         player.startTrack(track, false);
 
-        String content = old + " has finished playing. " + (track != null ? "Now playing " + track.getInfo().title + "." : "The Music Queue has concluded.");
-        sendMessage(content);
+        if (!repeat)
+            sendMessage(content);
     }
 
     public void skipTrack() {
+        repeat = false;
+
         AudioTrack track = queue.poll();
         player.startTrack(track, false);
 
@@ -48,11 +61,23 @@ public class TrackScheduler extends AudioEventAdapter {
     @Override
     public void onTrackEnd(AudioPlayer player, AudioTrack track, AudioTrackEndReason reason) {
         if (reason.mayStartNext)
-            nextTrack(track.getInfo().title);
+            nextTrack(track);
     }
 
     public void setActiveChannel(TextChannel activeChannel) {
         this.activeChannel = activeChannel;
+    }
+
+    public void setRepeat(boolean toggle) {
+        repeat = toggle;
+    }
+
+    public Queue<AudioTrack> getQueue() {
+        return queue;
+    }
+
+    public boolean isRepeat() {
+        return repeat;
     }
 
     private MessageEmbed trackEmbed(String content) {

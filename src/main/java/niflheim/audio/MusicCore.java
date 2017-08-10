@@ -122,6 +122,12 @@ public class MusicCore {
         return musicManagers;
     }
 
+    public void destroy(Guild guild) {
+        getMusicManager(guild).player.destroy();
+        guild.getAudioManager().setSendingHandler(null);
+        musicManagers.remove(guild.getId());
+    }
+
     private void selfDelete(TextChannel channel, Message message) {
         if (channel.getGuild().getSelfMember().hasPermission(channel, Permission.MESSAGE_MANAGE))
             message.delete().queueAfter(5, TimeUnit.SECONDS);

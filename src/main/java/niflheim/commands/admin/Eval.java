@@ -35,6 +35,11 @@ public class Eval extends Command {
 
     @Override
     public void execute(Context context, String[] args) {
+        if (args.length == 0) {
+            context.invalid(this);
+            return;
+        }
+
         EmbedBuilder embed = new EmbedBuilder().setColor(Color.CYAN);
 
         final String script;

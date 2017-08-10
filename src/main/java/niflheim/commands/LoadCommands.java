@@ -3,6 +3,9 @@ package niflheim.commands;
 import niflheim.commands.admin.*;
 import niflheim.commands.general.Ping;
 import niflheim.commands.mod.*;
+import niflheim.commands.music.Join;
+import niflheim.commands.music.Leave;
+import niflheim.commands.utility.Spoiler;
 import niflheim.core.Core;
 
 public class LoadCommands {
@@ -36,7 +39,10 @@ public class LoadCommands {
         Core.registerCommand("welcome", new Welcome());
 
         //Music commands
+        Core.registerCommand("join", new Join());
+        Core.registerCommand("leave", new Leave());
 
         //Utility commands
+        Core.registerCommand("spoiler", new Spoiler());
     }
 }

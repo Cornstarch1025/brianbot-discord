@@ -23,7 +23,7 @@ public class Database {
 
         while (conn == null) {
             try {
-                conn = r.connection().hostname("192.168.1.71").port(28015).connect();
+                conn = r.connection().hostname("localhost").port(28015).connect();
 
                 if (r.dbList().<List<String>>run(conn).contains(name)) {
                     LOG.info("Database connection established.");
