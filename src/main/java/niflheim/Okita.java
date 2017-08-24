@@ -1,5 +1,6 @@
 package niflheim;
 
+import com.jagrosh.jdautilities.waiter.EventWaiter;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.entities.User;
@@ -9,7 +10,6 @@ import niflheim.commands.LoadCommands;
 import niflheim.core.Shard;
 import niflheim.core.ShardMonitor;
 import niflheim.listeners.EventListener;
-import niflheim.listeners.EventWaiter;
 import niflheim.rethink.Database;
 import niflheim.rethink.DatabaseRegistry;
 import niflheim.utils.Settings;
@@ -23,7 +23,7 @@ import java.util.Map;
 
 public class Okita {
     public static final Logger LOG = LoggerFactory.getLogger(Okita.class);
-    public static Database DATABASE = new Database(Settings.DBNAME, Settings.GUILDS, Settings.USERS);
+    public static Database DATABASE;
     public static DatabaseRegistry registry = new DatabaseRegistry();
     public static EventWaiter waiter = new EventWaiter();
     public static MusicCore musicCore = new MusicCore();
@@ -37,6 +37,8 @@ public class Okita {
                 " | |_| | |   <  | | | |_  | (_| |\n" +
                 "  \\___/  |_|\\_\\ |_|  \\__|  \\__,_|\n" +
                 "                                 ");
+
+        DATABASE = new Database(Settings.DBNAME, Settings.GUILDS, Settings.USERS);
 
         init(new EventListener());
         LoadCommands.init();
