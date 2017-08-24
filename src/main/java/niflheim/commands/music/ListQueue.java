@@ -8,6 +8,7 @@ import niflheim.commands.Command;
 import niflheim.commands.CommandFrame;
 import niflheim.commands.Scope;
 import niflheim.core.Context;
+import org.apache.commons.lang3.time.DateFormatUtils;
 
 import java.awt.*;
 import java.util.Queue;
@@ -45,7 +46,7 @@ public class ListQueue extends Command {
             int position = 1;
 
             for (AudioTrack track : tracks) {
-               // name.append("**").append(position).append(".** ").append("`[").append(DateFormatUtils.format(track.getDuration(), "mm:ss")).append("]` ").append(track.getInfo().title).append("\n");
+                name.append("**").append(position).append(".** ").append("`[").append(DateFormatUtils.format(track.getDuration(), "mm:ss")).append("]` ").append(track.getInfo().title).append("\n");
                 position++;
             }
 

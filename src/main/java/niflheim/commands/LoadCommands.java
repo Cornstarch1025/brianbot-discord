@@ -1,7 +1,12 @@
 package niflheim.commands;
 
 import niflheim.commands.admin.*;
-import niflheim.commands.general.Ping;
+import niflheim.commands.fun.*;
+import niflheim.commands.general.*;
+import niflheim.commands.info.Avatar;
+import niflheim.commands.info.Permissions;
+import niflheim.commands.info.Server;
+import niflheim.commands.info.User;
 import niflheim.commands.mod.*;
 import niflheim.commands.music.Join;
 import niflheim.commands.music.Leave;
@@ -21,11 +26,27 @@ public class LoadCommands {
         Core.registerCommand("toggle", new Toggle());
 
         //Fun commands
+        Core.registerCommand("choose", new Choose());
+        Core.registerCommand("coinflip", new CoinFlip());
+        Core.registerCommand("eightball", new EightBall());
+        Core.registerCommand("mock", new Mock());
+        Core.registerCommand("reverse", new Reverse());
+        Core.registerCommand("roulette", new Roulette());
 
         //General commands
+        Core.registerCommand("bot", new Bot());
+        Core.registerCommand("donate", new Donate());
+        Core.registerCommand("help", new Help());
+        Core.registerCommand("invite", new Invite());
         Core.registerCommand("ping", new Ping());
+        Core.registerCommand("support", new Support());
+        Core.registerCommand("uptime", new Uptime());
 
         //Info commands
+        Core.registerCommand("avatar", new Avatar());
+        Core.registerCommand("permissions", new Permissions());
+        Core.registerCommand("server", new Server());
+        Core.registerCommand("user", new User());
 
         //Mod commands
         Core.registerCommand("autorole", new AutoRole());
