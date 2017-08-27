@@ -35,7 +35,7 @@ public class Shard {
             while (!start) {
                 JDABuilder builder = new JDABuilder(AccountType.BOT)
                         .setToken(Settings.TOKEN)
-                        .addEventListener(eventListener, shardListener)
+                        .addEventListener(eventListener, shardListener, Okita.waiter)
                         .setAudioSendFactory(new NativeAudioSendFactory())
                         .setAutoReconnect(true);
 
