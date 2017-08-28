@@ -10,7 +10,9 @@ import net.dv8tion.jda.core.entities.MessageEmbed;
 import net.dv8tion.jda.core.entities.TextChannel;
 
 import java.awt.*;
+import java.util.Collections;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.TimeUnit;
 
@@ -31,13 +33,11 @@ public class TrackScheduler extends AudioEventAdapter {
             queue.offer(track);
     }
 
-    public void nextTrack(AudioTrack old) {
-        AudioTrack track;
+    public void nextTrack(AudioTrack old) {/*
+        AudioTrack track = old;
         String content = "";
 
-        if (repeat)
-            track = old;
-        else {
+        if (!repeat) {
             track = queue.poll();
             content = old.getInfo().title + " has finished playing. " + (track != null ? "Now playing " + track.getInfo().title + "." : "The Music Queue has concluded.");
         }
@@ -45,7 +45,9 @@ public class TrackScheduler extends AudioEventAdapter {
         player.startTrack(track, false);
 
         if (!repeat)
-            sendMessage(content);
+            sendMessage(content);*/
+        AudioTrack track = queue.poll();
+        player.startTrack(track, false);
     }
 
     public void skipTrack() {
@@ -78,6 +80,14 @@ public class TrackScheduler extends AudioEventAdapter {
 
     public boolean isRepeat() {
         return repeat;
+    }
+
+    public void shuffle() {
+        Collections.shuffle((List<?>) queue);
+    }
+
+    public void clearQueue() {
+        queue.clear();
     }
 
     private MessageEmbed trackEmbed(String content) {
