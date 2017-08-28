@@ -33,21 +33,17 @@ public class TrackScheduler extends AudioEventAdapter {
             queue.offer(track);
     }
 
-    public void nextTrack(AudioTrack old) {/*
-        AudioTrack track = old;
-        String content = "";
-
-        if (!repeat) {
-            track = queue.poll();
-            content = old.getInfo().title + " has finished playing. " + (track != null ? "Now playing " + track.getInfo().title + "." : "The Music Queue has concluded.");
-        }
-
-        player.startTrack(track, false);
-
-        if (!repeat)
-            sendMessage(content);*/
+    public void nextTrack(AudioTrack old) {
         AudioTrack track = queue.poll();
+        String content = old.getInfo().title + " has finished playing. " + (track != null ? "Now playing " + track.getInfo().title + "." : "The Music Queue has concluded.");
+
+        if(repeat)
+            track = old.makeClone();
+
         player.startTrack(track, false);
+
+        if(!repeat)
+            sendMessage(content);
     }
 
     public void skipTrack() {

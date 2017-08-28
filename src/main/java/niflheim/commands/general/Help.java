@@ -1,19 +1,15 @@
 package niflheim.commands.general;
 
-import com.jagrosh.jdautilities.menu.buttonmenu.ButtonMenuBuilder;
-import com.jagrosh.jdautilities.menu.pagination.PaginatorBuilder;
 import net.dv8tion.jda.core.EmbedBuilder;
-import net.dv8tion.jda.core.entities.Emote;
-import net.dv8tion.jda.core.exceptions.PermissionException;
-import niflheim.Okita;
 import niflheim.commands.Category;
 import niflheim.commands.Command;
 import niflheim.commands.CommandFrame;
 import niflheim.commands.Scope;
 import niflheim.core.Context;
+import niflheim.core.Core;
 
 import java.awt.*;
-import java.util.concurrent.TimeUnit;
+import java.util.Map;
 
 @CommandFrame(
         aliases = {"halp"},
@@ -24,33 +20,52 @@ import java.util.concurrent.TimeUnit;
         scope = Scope.GUILD
 )
 public class Help extends Command {
-    private final String MUSIC = "\uD83C\uDFB5";
-    private final String INFO = "\uD83D\uDCC4";
-
-    private ButtonMenuBuilder helpMenu = new ButtonMenuBuilder()
-            .setEventWaiter(Okita.waiter)
-            .setDescription("React to see commands!")
-            .setColor(Color.CYAN)
-            .setChoices(INFO, MUSIC)
-            .setTimeout(1, TimeUnit.MINUTES);
-
     public void execute(Context context, String[] args) {
-        EmbedBuilder builder;
-        helpMenu.setAction(e -> {
-            switch (e.getName()) {
-                case MUSIC:
-                    helpMenu.setDescription("Music Commands").build().display(context.channel);
-                    break;
-                case INFO:
+        EmbedBuilder embed = new EmbedBuilder().setColor(Color.CYAN);
 
+        switch (args.length){
+            default:
+                context.invalid(this);
+                return;
+            case 0:
+                embed.setAuthor("Okita Help", null, context.jda.getSelfUser().getEffectiveAvatarUrl())
+                        .setDescription("Ubiquitous Discord bot developed by Niflheim and Kirbyquerby. Please consider donating as server hosting is not free.")
+                        .addField("Admin - 8", parseModule(Category.ADMIN), false)
+                        .addField("General - 7", parseModule(Category.GENERAL), false)
+                        .addField("Information - 4", parseModule(Category.INFO), false)
+                        .addField("Moderation - 9", parseModule(Category.MOD), false)
+                        .addField("Fun - 6", parseModule(Category.FUN), false)
+                        .addField("Music - 19", parseModule(Category.MUSIC), false)
+                        .addField("Utility - 1", parseModule(Category.UTILITY), false)
+                        .setFooter(".Help <Command> will pull up more information.", null);
+
+                context.channel.sendMessage(embed.build()).queue();
+                break;
+            case 1:
+                if(Core.getCommands().containsKey(args[0].toLowerCase())){
+                    Command cmd = Core.getCommands().get(args[0].toLowerCase());
+                    embed.setTitle(args[0].toUpperCase().substring(0,1) + args[0].toLowerCase().substring(1) + " Command")
+                            .setDescription(cmd.getInfo().help())
+                            .addField("Usage", cmd.getInfo().usage(), true)
+                            .addField("Donator Level", "Level " + cmd.getInfo().level(), true)
+                            .setFooter(context.time(), null);
+
+                    context.channel.sendMessage(embed.build()).queue();
                     break;
-            }
-        }).setUsers(context.user)
-        .build()
-        .display(context.channel);
+                }
+        }
     }
 
-    private String pageLoader(Emote react) {
-        return null;
+    private String parseModule(Category category){
+        StringBuilder commands = new StringBuilder();
+
+        for (Map.Entry<String, Command> x: Core.getHelp().entrySet())
+            if (x.getValue().getInfo().category().equals(category))
+                commands.append("`").append(x.getKey()).append("`, ");
+
+        if (commands.length() != 0)
+            commands.deleteCharAt(commands.lastIndexOf(","));
+
+        return commands.toString();
     }
 }

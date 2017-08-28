@@ -15,6 +15,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Core {
     private static ConcurrentHashMap<String, Command> commands = new ConcurrentHashMap<>();
+    private static ConcurrentHashMap<String, Command> help = new ConcurrentHashMap<>();
     private static ConcurrentHashMap<String, Long> cooldowns = new ConcurrentHashMap<>();
     private static ArrayList<String> disabled = new ArrayList<>();
 
@@ -59,6 +60,10 @@ public class Core {
         return commands;
     }
 
+    public static ConcurrentHashMap<String, Command> getHelp() {
+        return help;
+    }
+
     public static ConcurrentHashMap<String, Long> getCooldowns() {
         return cooldowns;
     }
@@ -69,6 +74,7 @@ public class Core {
 
     public static void registerCommand(String trigger, Command command){
         commands.put(trigger, command);
+        help.put(trigger, command);
 
         for(String alias: command.getInfo().aliases())
             commands.put(alias, command);
