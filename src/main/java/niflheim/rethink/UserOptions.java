@@ -1,7 +1,6 @@
 package niflheim.rethink;
 
-import com.sun.istack.internal.NotNull;
-
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.beans.ConstructorProperties;
 import java.util.ArrayList;
@@ -19,7 +18,7 @@ public class UserOptions {
         this.id = id;
     }
 
-    @NotNull
+    @Nonnull
     public String getId() {
         return id;
     }

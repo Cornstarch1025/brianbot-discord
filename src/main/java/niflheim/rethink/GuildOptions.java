@@ -1,9 +1,9 @@
 package niflheim.rethink;
 
-import com.sun.istack.internal.NotNull;
 import niflheim.Okita;
 import niflheim.utils.Settings;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.beans.ConstructorProperties;
 
@@ -23,7 +23,7 @@ public class GuildOptions implements ManagedObject {
         this.id = id;
     }
 
-    @NotNull
+    @Nonnull
     public String getId() {
         return id;
     }
