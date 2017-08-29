@@ -37,6 +37,9 @@ public class EventListener extends ListenerAdapter {
 
     @Override
     public void onPrivateMessageReceived(PrivateMessageReceivedEvent event) {
+        if (event.getAuthor().isBot())
+            return;
+
         event.getChannel().sendMessage("Please use Okita in a guild, check `.help` for documentation.").queue();
 
         TextChannel pm = Okita.getTextChannelById(Settings.PM_LOG);

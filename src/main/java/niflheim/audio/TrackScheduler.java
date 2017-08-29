@@ -47,12 +47,13 @@ public class TrackScheduler extends AudioEventAdapter {
     }
 
     public void skipTrack() {
-        repeat = false;
-
         AudioTrack track = queue.poll();
-        player.startTrack(track, false);
 
         String content = player.getPlayingTrack().getInfo().title + " has been skipped. " + (track != null ? "Now playing " + track.getInfo().title + "." : "The Music Queue has concluded.");
+        repeat = false;
+
+        player.startTrack(track, false);
+
         sendMessage(content);
     }
 
