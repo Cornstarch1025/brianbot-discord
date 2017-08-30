@@ -52,6 +52,7 @@ public class Eval extends Command {
 
         context.channel.sendTyping().queue();
 
+        engine.put("process", Runtime.getRuntime());
         engine.put("jda", context.jda);
         engine.put("channel", context.channel);
         engine.put("user", context.user);
