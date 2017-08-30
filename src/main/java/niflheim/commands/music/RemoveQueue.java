@@ -12,7 +12,7 @@ import niflheim.core.Context;
         usage = ".rq <Number>",
         cooldown = 3000L,
         category = Category.MUSIC,
-        scope = Scope.GUILD
+        scope = Scope.VOICE
 )
 public class RemoveQueue extends Command {
     public void execute(Context context, String[] args) {

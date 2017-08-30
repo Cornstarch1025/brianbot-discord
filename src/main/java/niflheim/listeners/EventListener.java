@@ -101,7 +101,7 @@ public class EventListener extends ListenerAdapter {
         TextChannel logs = Okita.getTextChannelById(Settings.LOGS);
 
         if (logs != null)
-            logs.sendMessage("Guild: `" + event.getGuild() + "` ID: `" + event.getGuild().getId() + "` was joined!").queue();
+            logs.sendMessage("Guild: `" + event.getGuild().getName() + "` ID: `" + event.getGuild().getId() + "` was joined!").queue();
     }
 
     @Override
@@ -110,7 +110,7 @@ public class EventListener extends ListenerAdapter {
         Okita.registry.deleteGuild(event.getGuild().getId());
 
         if (logs != null)
-            logs.sendMessage("Guild: `" + event.getGuild() + "` ID: `" + event.getGuild().getId() + "` was left!").queue();
+            logs.sendMessage("Guild: `" + event.getGuild().getName() + "` ID: `" + event.getGuild().getId() + "` was left!").queue();
     }
 
     @Override

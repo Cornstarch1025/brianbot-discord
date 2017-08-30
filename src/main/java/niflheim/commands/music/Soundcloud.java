@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
         usage = ".sc <Search>",
         cooldown = 3000L,
         category = Category.MUSIC,
-        scope = Scope.GUILD
+        scope = Scope.VOICE
 )
 public class Soundcloud extends Command {
     public void execute(Context context, String[] args) {

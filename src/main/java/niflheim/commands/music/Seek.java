@@ -11,7 +11,7 @@ import niflheim.core.Context;
         usage = ".skip hh:mm:ss",
         cooldown = 3000L,
         category = Category.MUSIC,
-        scope = Scope.GUILD
+        scope = Scope.VOICE
 )
 public class Seek extends Command {
     public void execute(Context context, String[] args) {

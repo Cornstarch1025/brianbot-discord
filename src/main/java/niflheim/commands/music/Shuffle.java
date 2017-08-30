@@ -15,7 +15,7 @@ import java.awt.*;
         usage = ".shuffle",
         cooldown = 3000L,
         category = Category.MUSIC,
-        scope = Scope.GUILD
+        scope = Scope.VOICE
 )
 public class Shuffle extends Command {
     EmbedBuilder embed = new EmbedBuilder().setColor(Color.CYAN).setTitle("Music Player").setDescription("The queue has been shuffled.");

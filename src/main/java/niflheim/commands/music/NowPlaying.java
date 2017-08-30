@@ -18,7 +18,7 @@ import java.awt.*;
         usage = ".np",
         cooldown = 3000L,
         category = Category.MUSIC,
-        scope = Scope.GUILD
+        scope = Scope.VOICE
 )
 public class NowPlaying extends Command {
     public void execute(Context context, String[] args) {

@@ -16,7 +16,7 @@ import java.awt.*;
         usage = ".stop",
         cooldown = 3000L,
         category = Category.MUSIC,
-        scope = Scope.GUILD
+        scope = Scope.VOICE
 )
 public class Stop extends Command {
     private EmbedBuilder embed = new EmbedBuilder().setColor(Color.CYAN).setTitle("Music Player").setDescription("Stopping music and clearing queue.");

@@ -17,7 +17,7 @@ import java.awt.*;
         usage = ".pause",
         cooldown = 3000L,
         category = Category.MUSIC,
-        scope = Scope.GUILD
+        scope = Scope.VOICE
 )
 public class Pause extends Command {
     private MessageEmbed embed = new EmbedBuilder().setColor(Color.CYAN).setTitle("Music Player").setDescription("The player has been paused.").build();

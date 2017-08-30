@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
         usage = "Searches and plays a song from Youtube given a search.",
         cooldown = 3000L,
         category = Category.MUSIC,
-        scope = Scope.GUILD
+        scope = Scope.VOICE
 )
 public class Youtube extends Command {
     public void execute(Context context, String[] args) {

@@ -5,6 +5,8 @@ plugins {
     id 'com.sedmelluq.jdaction' version '1.0.1'
 }
 
+mainClassName= 'niflheim.Okita'
+
 group 'Niflheim'
 version '1.0'
 

@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
         usage = ".pq <Url>",
         cooldown = 3000L,
         category = Category.MUSIC,
-        scope = Scope.GUILD
+        scope = Scope.VOICE
 )
 public class PlaylistQueue extends Command {
     public void execute(Context context, String[] args) {

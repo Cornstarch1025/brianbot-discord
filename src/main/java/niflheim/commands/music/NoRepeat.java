@@ -16,7 +16,7 @@ import java.awt.*;
         usage = ".norepeat",
         cooldown = 3000L,
         category = Category.MUSIC,
-        scope = Scope.GUILD
+        scope = Scope.VOICE
 )
 public class NoRepeat extends Command {
     public void execute(Context context, String[] args) {

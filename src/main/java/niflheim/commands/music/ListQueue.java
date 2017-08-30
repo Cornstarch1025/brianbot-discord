@@ -19,7 +19,7 @@ import java.util.Queue;
         usage = ".lq, .lq <Page>",
         cooldown = 3000L,
         category = Category.MUSIC,
-        scope = Scope.GUILD
+        scope = Scope.VOICE
 )
 public class ListQueue extends Command {
     public void execute(Context context, String[] args) {

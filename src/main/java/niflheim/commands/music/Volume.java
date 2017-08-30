@@ -15,7 +15,7 @@ import java.awt.*;
         usage = ".volume, .volume <0-100>",
         cooldown = 3000L,
         category = Category.MUSIC,
-        scope = Scope.GUILD
+        scope = Scope.VOICE
 )
 public class Volume extends Command {
     public void execute(Context context, String[] args) {

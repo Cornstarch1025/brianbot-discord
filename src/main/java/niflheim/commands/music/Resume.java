@@ -16,7 +16,7 @@ import java.awt.*;
         usage = ".resume",
         cooldown = 3000L,
         category = Category.MUSIC,
-        scope = Scope.GUILD
+        scope = Scope.VOICE
 )
 public class Resume extends Command {
     private MessageEmbed embed = new EmbedBuilder().setColor(Color.CYAN).setTitle("Music Player").setDescription("The player has resumed.").build();

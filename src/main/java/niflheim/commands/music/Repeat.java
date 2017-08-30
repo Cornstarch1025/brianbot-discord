@@ -16,7 +16,7 @@ import java.awt.*;
         usage = ".repeat",
         cooldown = 3000L,
         category = Category.MUSIC,
-        scope = Scope.GUILD
+        scope = Scope.VOICE
 )
 public class Repeat extends Command {
     public void execute(Context context, String[] args) {
