@@ -114,7 +114,7 @@ public class Core {
         }
 
         if (cmd.getInfo().level() > 0 && context.userOptions.getLevel() < cmd.getInfo().level()) {
-            context.channel.sendMessage("This command is restricted to Level " + cmd.getInfo().level() + " Donators!").queue(s -> selfDelete(context, s));
+            context.channel.sendMessage("Server hosting isn't free! This command is restricted to Level " + cmd.getInfo().level() + " Donators!").queue(s -> selfDelete(context, s));
             return false;
         }
 

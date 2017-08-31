@@ -23,6 +23,8 @@ public class Skip extends Command {
 
         if(!context.guild.getAudioManager().isConnected())
             context.channel.sendMessage("I am not connected to a Voice Channel!").queue();
+        else if(Okita.musicCore.getMusicManager(context.guild).player.getPlayingTrack() == null)
+            context.channel.sendMessage("I am not playing anything!").queue();
         else
             Okita.musicCore.getMusicManager(context.guild).scheduler.skipTrack();
     }
