@@ -1,5 +1,7 @@
 package niflheim.rethink;
 
+import niflheim.Okita;
+
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.beans.ConstructorProperties;
@@ -51,5 +53,13 @@ public class UserOptions {
 
     public void setLevel(int level) {
         this.level = level;
+    }
+
+    public void save(){
+        Okita.DATABASE.saveUserOptions(this);
+    }
+
+    public void delete(){
+        Okita.DATABASE.deleteUserOptions(id);
     }
 }
