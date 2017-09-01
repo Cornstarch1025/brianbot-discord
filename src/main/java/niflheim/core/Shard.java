@@ -8,6 +8,7 @@ import net.dv8tion.jda.core.exceptions.RateLimitedException;
 import niflheim.Okita;
 import niflheim.listeners.EventListener;
 import niflheim.listeners.ShardListener;
+import niflheim.utils.GCounter;
 import niflheim.utils.Settings;
 
 public class Shard {

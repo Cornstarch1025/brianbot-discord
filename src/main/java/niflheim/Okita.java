@@ -12,6 +12,7 @@ import niflheim.core.ShardMonitor;
 import niflheim.listeners.EventListener;
 import niflheim.rethink.Database;
 import niflheim.rethink.DatabaseRegistry;
+import niflheim.utils.GCounter;
 import niflheim.utils.Settings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,6 +21,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class Okita {
     public static final Logger LOG = LoggerFactory.getLogger(Okita.class);
@@ -29,6 +33,7 @@ public class Okita {
     public static MusicCore musicCore = new MusicCore();
     public static ArrayList<Shard> shards = new ArrayList<>();
     public static ShardMonitor monitor;
+    public static ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
 
     public static void main(String[] args) {
         System.out.println("   ___    _      _   _           \n" +
@@ -101,5 +106,10 @@ public class Okita {
                 LOG.error("Error starting Shard " + i + ": ", e);
             }
         }
+
+        executor.scheduleAtFixedRate(() -> {
+            for (Shard shard : shards)
+                GCounter.update(shard);
+        }, 0, 30, TimeUnit.MINUTES);
     }
 }
