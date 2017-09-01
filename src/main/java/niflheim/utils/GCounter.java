@@ -25,7 +25,7 @@ public class GCounter {
         Request request = new Request.Builder()
                 .url("https://discordbots.org/api/bots/298963480042668032/stats")
                 .header("User-Agent", "Okita")
-                .header("Authorization", Settings.BOTSPW)
+                .header("Authorization", Settings.DBOTS)
                 .header("Content-Type", "application/json")
                 .header("Accept", "application/json")
                 .post(RequestBody.create(HttpUtils.JSON, push.toString()))
