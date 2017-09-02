@@ -31,6 +31,7 @@ public class LoadCommands {
         Core.registerCommand("mock", new Mock());
         Core.registerCommand("reverse", new Reverse());
         Core.registerCommand("roulette", new Roulette());
+        Core.registerCommand("xkcd", new Xkcd());
 
         //General commands
         Core.registerCommand("bot", new Bot());

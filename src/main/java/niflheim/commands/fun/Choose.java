@@ -30,6 +30,6 @@ public class Choose extends Command {
 
         String[] items = list.toString().split(";");
 
-        context.channel.sendMessage("Hm... I chose `" + items[(int) (Math.random() * (items.length + 1))] + "`.").queue();
+        context.channel.sendMessage("Hm... I chose `" + items[(int) (Math.random() * (items.length))] + "`.").queue();
     }
 }
