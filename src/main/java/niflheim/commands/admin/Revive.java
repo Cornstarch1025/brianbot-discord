@@ -8,7 +8,6 @@ import niflheim.core.Context;
 import niflheim.utils.Settings;
 
 @CommandFrame(
-        aliases = "restart",
         help = "Revives a targeted shard manually.",
         usage = ".revive <Shard ID>",
         admin = true,

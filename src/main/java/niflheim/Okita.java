@@ -110,6 +110,6 @@ public class Okita {
         executor.scheduleAtFixedRate(() -> {
             for (Shard shard : shards)
                 GCounter.update(shard);
-        }, 0, 30, TimeUnit.MINUTES); 
+        }, 0, 30, TimeUnit.MINUTES);
     }
 }

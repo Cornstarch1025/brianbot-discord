@@ -22,6 +22,11 @@ import java.util.Random;
 )
 public class Xkcd extends Command {
     public void execute(Context context, String[] args) {
+        if (args.length != 0) {
+            context.invalid(this);
+            return;
+        }
+
         Request comic = new Request.Builder()
                 .url("http://xkcd.com/info.0.json")
                 .build();

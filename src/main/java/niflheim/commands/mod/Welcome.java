@@ -36,7 +36,7 @@ public class Welcome extends Command {
                 if (options.getGoodbye() == null)
                     context.channel.sendMessage("Guild welcome message not set!").queue();
                 else
-                    context.channel.sendMessage("Current guild welcome message: " + options.getGoodbye()).queue();
+                    context.channel.sendMessage("Current guild welcome message: " + options.getWelcome()).queue();
                 break;
             case 1:
                 if (args[0].equalsIgnoreCase("clear")) {
