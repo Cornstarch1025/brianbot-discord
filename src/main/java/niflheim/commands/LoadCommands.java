@@ -2,6 +2,7 @@ package niflheim.commands;
 
 import niflheim.commands.admin.*;
 import niflheim.commands.fun.*;
+import niflheim.commands.fun.chess.Game;
 import niflheim.commands.general.*;
 import niflheim.commands.info.Avatar;
 import niflheim.commands.info.Permissions;
@@ -32,6 +33,7 @@ public class LoadCommands {
         Core.registerCommand("reverse", new Reverse());
         Core.registerCommand("roulette", new Roulette());
         Core.registerCommand("xkcd", new Xkcd());
+        Core.registerCommand("game", new Game());
 
         //General commands
         Core.registerCommand("bot", new Bot());

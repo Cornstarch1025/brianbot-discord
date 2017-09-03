@@ -9,7 +9,7 @@ import niflheim.rethink.GuildOptions;
 
 @CommandFrame(
         help = "Sets the guild's goodbye message for whenever a member leaves.",
-        usage = ".goodbye <Message>, .goodbye clear",
+        usage = ".goodbye <Message>, .goodbye clear, .goodbye enable",
         cooldown = 5000L,
         guildOwner = true,
         category = Category.MOD,
@@ -27,6 +27,8 @@ public class Goodbye extends Command {
                     str.append(x).append(" ");
 
                 options.setGoodbye(str.toString());
+                if (options.getMessageChannel() == null)
+                    options.setMessageChannel(context.channel.getId());
                 options.setGoodbyeEnable(true);
                 options.save();
 
@@ -43,8 +45,19 @@ public class Goodbye extends Command {
                     options.setGoodbye(null);
                     options.setGoodbyeEnable(false);
                     options.save();
-                }
-                context.channel.sendMessage("Guild goodbye message has been cleared and disabled.").queue();
+                    context.channel.sendMessage("Guild goodbye message has been cleared and disabled.").queue();
+                } else if (args[0].equalsIgnoreCase("enable")) {
+                    if (options.getGoodbye() == null) {
+                        context.channel.sendMessage("Can't enable goodbye message because none set!").queue();
+                        return;
+                    }
+
+                    options.setGoodbyeEnable(true);
+                    options.save();
+
+                    context.channel.sendMessage("Goodbye messages have been enabled.").queue();
+                } else
+                    context.invalid(this);
                 break;
         }
     }

@@ -32,9 +32,11 @@ public class SetChannel extends Command {
             case 1:
                 if (args[0].equalsIgnoreCase("clear")) {
                     options.setMessageChannel(null);
+                    options.setWelcomeEnable(false);
+                    options.setGoodbyeEnable(false);
                     options.save();
 
-                    context.channel.sendMessage("Welcome and Goodbye messages will default to the public channel.").queue();
+                    context.channel.sendMessage("Disabling Welcome and Goodbye messages and clearing channel.").queue();
                 } else
                     context.invalid(this);
                 break;

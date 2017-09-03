@@ -1,5 +1,7 @@
 package niflheim.commands.fun.chess;
 
+import com.jagrosh.jdautilities.menu.buttonmenu.ButtonMenu;
+import com.jagrosh.jdautilities.menu.buttonmenu.ButtonMenuBuilder;
 import net.dv8tion.jda.core.EmbedBuilder;
 import niflheim.Okita;
 import niflheim.commands.Category;
@@ -11,64 +13,82 @@ import niflheim.core.Core;
 import niflheim.rethink.UserOptions;
 import niflheim.utils.Stockfish;
 
+import java.awt.*;
+import java.util.concurrent.TimeUnit;
+
 @CommandFrame(
         aliases = {"challenge"},
         help = "Challenges Stockfish Chess AI to a game.",
-        usage = ".game <white/black> <0-10 difficulty>",
+        usage = ".game",
         cooldown = 3000L,
         category = Category.FUN,
         scope = Scope.TEXT
 )
 public class Game extends Command {
+    private final String WHITE = "\u2B1C";
+    private final String BLACK = "\u2B1B";
+    private final String CANCEL = "\u274C";
+
+    private final String ONE = "\u0031\u20E3";
+    private final String TWO = "\u0032\u20E3";
+    private final String THREE = "\u0033\u20E3";
+    private final String FOUR = "\u0034\u20E3";
+    private final String FIVE = "\u0035\u20E3";
+
+    private ButtonMenuBuilder side = new ButtonMenuBuilder()
+            .setColor(Color.CYAN)
+            .setDescription("Please select your starting side by choosing \u2B1C or \u2B1B! To cancel, press the \u274C!")
+            .setEventWaiter(Okita.waiter)
+            .setChoices(WHITE, BLACK, CANCEL)
+            .setTimeout(1, TimeUnit.MINUTES);
+
+    private ButtonMenuBuilder difficulty = new ButtonMenuBuilder()
+            .setColor(Color.CYAN)
+            .setDescription("Please select a computer difficulty below! Okita's chess is powered by Stockfish 8, one of the strongest Chess Engines in the world. Once selected the difficulty can not be changed without starting a new game!")
+            .setEventWaiter(Okita.waiter)
+            .setChoices(ONE, TWO, THREE, FOUR, FIVE, CANCEL)
+            .setTimeout(1, TimeUnit.MINUTES);
+
     public void execute(Context context, String[] args) {
+        if (args.length != 0){
+            context.invalid(this);
+            return;
+        }
+
         UserOptions options = Okita.registry.ofUser(context.user.getId());
 
-        switch (args.length) {
-            default:
-                context.invalid(this);
-                break;
-            case 0:
-                context.channel.sendMessage("Please choose a side!").queue();
-                break;
-            case 1:
-                if (args[0].equalsIgnoreCase("white"))
-                    init(0, 1, context);
-                else if (args[0].equalsIgnoreCase("black"))
-                    init(1, 1, context);
-                else
-                    context.channel.sendMessage("Please choose a valid side!").queue();
-                break;
-            case 2:
-                int side = 0;
-                int difficulty = 1;
-
-                if (args[0].equalsIgnoreCase("white"))
-                    side = 0;
-                else if (args[0].equalsIgnoreCase("black"))
-                    side = 1;
-                else {
-                    context.channel.sendMessage("Please choose a valid side!").queue();
-                    return;
-                }
-
-                if (options.getLevel() < 1)
-                    context.channel.sendMessage("Sorry! Chess computation is very resource taxing, setting custom difficulty is restricted to Level 1 Donators. You have initialized a game with a difficulty of 1.").queue();
-                else {
-                    try {
-                        difficulty = Integer.parseInt(args[1]);
-                    } catch (NumberFormatException e) {
-                        context.channel.sendMessage("Please choose a valid difficulty!").queue();
-                        return;
-                    }
-
-                    if (difficulty < 0 || difficulty > 10) {
-                        context.channel.sendMessage("Please choose a difficulty between 0 and 10").queue();
-                        return;
-                    }
-
-                    init(side, difficulty, context);
-                }
+        if (options.getFen() != null){
+            context.channel.sendMessage("You already have an ongoing game! To start a new game, resign first!").queue();
+            return;
         }
+
+        side.setAction(e -> {
+            switch (e.getName()){
+                case WHITE:
+                    break;
+                case BLACK:
+                    break;
+                case CANCEL:
+                    break;
+            }
+
+            difficulty.setAction(f -> {
+                switch (f.getName()){
+                    case ONE:
+                        break;
+                    case TWO:
+                        break;
+                    case THREE:
+                        break;
+                    case FOUR:
+                        break;
+                    case FIVE:
+                        break;
+                    case CANCEL:
+                        break;
+                }
+            }).setUsers(context.user).build().display(context.channel);
+        }).setUsers(context.user).build().display(context.channel);
     }
 
     private void init(int side, int difficulty, Context context) {

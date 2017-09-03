@@ -9,7 +9,7 @@ import niflheim.rethink.GuildOptions;
 
 @CommandFrame(
         help = "Sets the guild's welcome message for whenever a member joins.",
-        usage = ".welcome <Message>, .welcome clear",
+        usage = ".welcome <Message>, .welcome clear, .welcome enable",
         cooldown = 5000L,
         guildOwner = true,
         category = Category.MOD,
@@ -27,13 +27,15 @@ public class Welcome extends Command {
                     str.append(x).append(" ");
 
                 options.setWelcome(str.toString());
+                if (options.getMessageChannel() == null)
+                    options.setMessageChannel(context.channel.getId());
                 options.setWelcomeEnable(true);
                 options.save();
 
                 context.channel.sendMessage("Guild welcome message has been set and enabled.").queue();
                 break;
             case 0:
-                if (options.getGoodbye() == null)
+                if (options.getWelcome() == null)
                     context.channel.sendMessage("Guild welcome message not set!").queue();
                 else
                     context.channel.sendMessage("Current guild welcome message: " + options.getWelcome()).queue();
@@ -43,8 +45,19 @@ public class Welcome extends Command {
                     options.setWelcome(null);
                     options.setWelcomeEnable(false);
                     options.save();
-                }
-                context.channel.sendMessage("Guild welcome message has been cleared and disabled.").queue();
+                    context.channel.sendMessage("Guild welcome message has been cleared and disabled.").queue();
+                } else if (args[0].equalsIgnoreCase("enable")) {
+                    if (options.getWelcome() == null) {
+                        context.channel.sendMessage("Can't enable welcome message because none set!").queue();
+                        return;
+                    }
+
+                    options.setWelcomeEnable(true);
+                    options.save();
+
+                    context.channel.sendMessage("Welcome messages have been enabled.").queue();
+                } else
+                    context.invalid(this);
                 break;
         }
     }

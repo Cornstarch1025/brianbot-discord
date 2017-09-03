@@ -53,15 +53,13 @@ public class EventListener extends ListenerAdapter {
         GuildOptions options = Okita.registry.ofGuild(event.getGuild().getId());
 
         if (options.isWelcomeEnable() && options.getWelcome() != null && options.getWelcome().length() > 0) {
-            TextChannel channel = Okita.getTextChannelById(options.getMessageChannel());
+            TextChannel channel = event.getGuild().getTextChannelById(options.getMessageChannel());
 
             if (channel != null && event.getGuild().getSelfMember().hasPermission(Permission.MESSAGE_WRITE))
                 channel.sendMessage(event.getUser().getAsMention() + " " + options.getWelcome()).queue();
             else {
                 options.setMessageChannel(null);
                 options.save();
-
-                event.getGuild().getPublicChannel().sendMessage(event.getUser().getAsMention() + " " + options.getWelcome()).queue();
             }
         }
 
@@ -83,15 +81,13 @@ public class EventListener extends ListenerAdapter {
         GuildOptions options = Okita.registry.ofGuild(event.getGuild().getId());
 
         if (options.isGoodbyeEnable() && options.getGoodbye() != null && options.getGoodbye().length() > 0) {
-            TextChannel channel = Okita.getTextChannelById(options.getMessageChannel());
+            TextChannel channel = event.getGuild().getTextChannelById(options.getMessageChannel());
 
             if (channel != null && event.getGuild().getSelfMember().hasPermission(Permission.MESSAGE_WRITE))
                 channel.sendMessage(event.getUser().getAsMention() + " " + options.getGoodbye()).queue();
             else {
                 options.setMessageChannel(null);
                 options.save();
-
-                event.getGuild().getPublicChannel().sendMessage(event.getUser().getAsMention() + " " + options.getGoodbye()).queue();
             }
         }
     }
