@@ -1,6 +1,6 @@
-package niflheim.commands.fun.chess;
+package niflheim.commands.chess;
 
-import niflheim.utils.Stockfish;
+import niflheim.commands.chess.engine.Stockfish;
 
 public class StockfishTest {
 	public static void main(String[] args) {
@@ -24,7 +24,7 @@ public class StockfishTest {
 		System.out.println("Best move : " + client.getBestMove(FEN, 100));
 
 		// get all the legal moves from a given position
-		//System.out.println("Legal moves : " + client.getLegalMoves(FEN));
+		System.out.println("Legal moves : \n" + client.getLegalMoves(FEN));
 
 		// draw board from a given position
 		System.out.println("Board state :");

@@ -9,6 +9,7 @@ import niflheim.core.Context;
 import niflheim.core.Core;
 
 import java.awt.*;
+import java.util.Arrays;
 import java.util.Map;
 
 @CommandFrame(
@@ -30,12 +31,12 @@ public class Help extends Command {
             case 0:
                 embed.setAuthor("Okita Help", null, context.jda.getSelfUser().getEffectiveAvatarUrl())
                         .setDescription("Ubiquitous Discord bot developed by Niflheim and Kirbyquerby. Please consider donating as server hosting is not free.")
-                        .addField("Admin - 8", parseModule(Category.ADMIN), false)
                         .addField("General - 7", parseModule(Category.GENERAL), false)
                         .addField("Information - 4", parseModule(Category.INFO), false)
                         .addField("Moderation - 9", parseModule(Category.MOD), false)
                         .addField("Fun - 6", parseModule(Category.FUN), false)
                         .addField("Music - 19", parseModule(Category.MUSIC), false)
+                        .addField("Chess - 4", parseModule(Category.CHESS), false)
                         .addField("Utility - 1", parseModule(Category.UTILITY), false)
                         .setFooter(".Help <Command> will pull up more information.", null);
 
@@ -46,9 +47,9 @@ public class Help extends Command {
                     Command cmd = Core.getCommands().get(args[0].toLowerCase());
                     embed.setTitle(args[0].toUpperCase().substring(0,1) + args[0].toLowerCase().substring(1) + " Command")
                             .setDescription(cmd.getInfo().help())
-                            .addField("Usage", cmd.getInfo().usage(), true)
-                            .addField("Donator Level", "Level " + cmd.getInfo().level(), true)
-                            .setFooter(context.time(), null);
+                            .addField("Usage", cmd.getInfo().usage(), false)
+                            .addField("Alias", Arrays.toString(cmd.getInfo().aliases()).substring(1, Arrays.toString(cmd.getInfo().aliases()).length() - 1), false)
+                            .setFooter("Donator Level " + cmd.getInfo().level() + " command", null);
 
                     context.channel.sendMessage(embed.build()).queue();
                     break;

@@ -113,8 +113,6 @@ public class EventListener extends ListenerAdapter {
     public void onDisconnect(DisconnectEvent event) {
         if (event.isClosedByServer())
             Okita.LOG.info("Shard " + event.getJDA().getShardInfo().getShardId() + " has disconnected (closed by server) with code: " + event.getServiceCloseFrame().getCloseCode() + " " + event.getCloseCode());
-        else
-            Okita.LOG.info("Shard " + event.getJDA().getShardInfo().getShardId() + " has disconnected with code: " + event.getServiceCloseFrame().getCloseCode() + " " + event.getCloseCode());
     }
 
     @Override

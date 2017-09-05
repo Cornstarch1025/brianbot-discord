@@ -7,6 +7,7 @@ import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.entities.VoiceChannel;
 import niflheim.audio.MusicCore;
 import niflheim.commands.LoadCommands;
+import niflheim.commands.chess.engine.Stockfish;
 import niflheim.core.Shard;
 import niflheim.core.ShardMonitor;
 import niflheim.listeners.EventListener;
@@ -32,6 +33,7 @@ public class Okita {
     public static EventWaiter waiter = new EventWaiter();
     public static MusicCore musicCore = new MusicCore();
     public static ArrayList<Shard> shards = new ArrayList<>();
+    public static Stockfish stockfish = new Stockfish();
     public static ShardMonitor monitor;
     public static ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
 
@@ -44,6 +46,13 @@ public class Okita {
                 "                                 ");
 
         DATABASE = new Database(Settings.DBNAME, Settings.GUILDS, Settings.USERS);
+
+        if (stockfish.startEngine()) {
+            LOG.info("Stockfish Engine successfully started.");
+            stockfish.sendCommand("setoption name Threads value " + Runtime.getRuntime().availableProcessors()/2);
+        }
+        else
+            LOG.info("Something went wrong starting Stockfish.");
 
         init(new EventListener());
         LoadCommands.init();
@@ -106,10 +115,10 @@ public class Okita {
                 LOG.error("Error starting Shard " + i + ": ", e);
             }
         }
-
+/*
         executor.scheduleAtFixedRate(() -> {
             for (Shard shard : shards)
                 GCounter.update(shard);
-        }, 0, 30, TimeUnit.MINUTES);
+        }, 0, 30, TimeUnit.MINUTES); */
     }
 }

@@ -7,7 +7,7 @@ import net.dv8tion.jda.core.exceptions.PermissionException;
 import niflheim.commands.Command;
 import niflheim.commands.Scope;
 import niflheim.utils.Settings;
-import niflheim.utils.Stockfish;
+import niflheim.commands.chess.engine.Stockfish;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,7 +17,6 @@ import java.util.concurrent.TimeUnit;
 public class Core {
     private static ConcurrentHashMap<String, Command> commands = new ConcurrentHashMap<>();
     private static ConcurrentHashMap<String, Command> help = new ConcurrentHashMap<>();
-    private static ConcurrentHashMap<User, Stockfish> players = new ConcurrentHashMap<>();
     private static ConcurrentHashMap<String, Long> cooldowns = new ConcurrentHashMap<>();
     private static ArrayList<String> disabled = new ArrayList<>();
 
@@ -64,10 +63,6 @@ public class Core {
 
     public static ConcurrentHashMap<String, Command> getHelp() {
         return help;
-    }
-
-    public static ConcurrentHashMap<User, Stockfish> getPlayers(){
-        return players;
     }
 
     public static ConcurrentHashMap<String, Long> getCooldowns() {
