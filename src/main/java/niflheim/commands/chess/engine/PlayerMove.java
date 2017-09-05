@@ -1,16 +1,19 @@
 package niflheim.commands.chess.engine;
 
 import net.dv8tion.jda.core.entities.User;
+import niflheim.core.Context;
 
 public class PlayerMove {
     private final User user;
     private final String move;
     private final String fen;
+    public final Context ctx;
 
-    public PlayerMove(User user, String move, String fen) {
+    public PlayerMove(User user, String move, String fen, Context ctx) {
         this.user = user;
         this.move = move;
         this.fen = fen;
+        this.ctx = ctx;
     }
 
     public User getUser() {

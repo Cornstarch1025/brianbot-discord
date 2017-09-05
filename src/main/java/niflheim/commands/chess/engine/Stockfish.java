@@ -71,7 +71,7 @@ public class Stockfish {
 	public String getLegalMoves(String fen) {
 		sendCommand("position fen " + fen);
 		sendCommand("perft 1");
-		return getOutput(10000);
+		return getOutput(0);
 	}
 
 	public void drawBoard(String fen) {
