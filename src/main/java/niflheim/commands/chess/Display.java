@@ -19,7 +19,7 @@ import java.awt.*;
         scope = Scope.TEXT
 )
 public class Display extends Command {
-    public void execute(Context context, String[] args) {
+    public void execute(Context context, String[] args) {/*
         UserOptions options = Okita.registry.ofUser(context.user.getId());
 
         if (options.getFen() == null) {
@@ -28,6 +28,6 @@ public class Display extends Command {
         }
 
         EmbedBuilder embed = new EmbedBuilder().setColor(Color.CYAN)
-                .setAuthor(context.user.getName() + "'s Game", null, context.user.getEffectiveAvatarUrl())
+                .setAuthor(context.user.getName() + "'s Game", null, context.user.getEffectiveAvatarUrl()) */
     }
 }

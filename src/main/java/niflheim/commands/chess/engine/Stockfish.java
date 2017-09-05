@@ -1,4 +1,4 @@
-package niflheim.utils;
+package niflheim.commands.chess.engine;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -70,8 +70,8 @@ public class Stockfish {
 
 	public String getLegalMoves(String fen) {
 		sendCommand("position fen " + fen);
-		sendCommand("d");
-		return getOutput(0).split("Legal moves: ")[1];
+		sendCommand("perft 1");
+		return getOutput(10000);
 	}
 
 	public void drawBoard(String fen) {
