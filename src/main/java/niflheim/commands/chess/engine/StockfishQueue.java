@@ -36,8 +36,7 @@ public class StockfishQueue {
                                 break;
                             case 1:
                                 EmbedBuilder embed1 = new EmbedBuilder().setColor(Color.CYAN)
-                                        .setAuthor(move.ctx.user.getName() + "'s Game", null, move.ctx.user.getEffectiveAvatarUrl())
-                                        .setFooter("Chess powered by Stockfish 8", null);
+                                        .setAuthor(move.ctx.user.getName() + "'s Game", null, move.ctx.user.getEffectiveAvatarUrl());
 
                                 String[] legalMoves = Okita.stockfish.getLegalMoves(move.getFen()).split(": 1\n");
 
