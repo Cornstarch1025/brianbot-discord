@@ -14,7 +14,7 @@ import java.awt.*;
         help = "Changes the music player volume.",
         usage = ".volume, .volume <0-100>",
         cooldown = 3000L,
-        level = 1,
+        level = 0,
         category = Category.MUSIC,
         scope = Scope.VOICE
 )

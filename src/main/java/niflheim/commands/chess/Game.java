@@ -83,7 +83,7 @@ public class Game extends Command {
                     return;
             }
 
-            if (options.getLevel() > 0)
+            if (options.getLevel() > -1)
                 difficulty.setAction(f -> {
                     switch (f.getName()) {
                         case ONE:

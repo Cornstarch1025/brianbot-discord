@@ -18,7 +18,7 @@ import java.util.List;
         help = "Creates a spoiler for others to view at their own risk!",
         usage = ".spoiler <Text>",
         cooldown = 3000L,
-        level = 1,
+        level = 0,
         category = Category.UTILITY,
         scope = Scope.TEXT
 )
