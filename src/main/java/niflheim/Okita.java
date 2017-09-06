@@ -52,10 +52,9 @@ public class Okita {
         if (stockfish.startEngine()) {
             LOG.info("Stockfish Engine successfully started.");
             stockfish.sendCommand("uci");
-            stockfish.sendCommand("setoption name Threads value " + Runtime.getRuntime().availableProcessors()/2);
-            stockfish.getOutput(0);
-        }
-        else
+            stockfish.sendCommand("setoption name Threads value " + Runtime.getRuntime().availableProcessors() / 2);
+            stockfish.getOutput(0, 0);
+        } else
             LOG.info("Something went wrong starting Stockfish.");
 
         init(new EventListener());
@@ -119,10 +118,10 @@ public class Okita {
                 LOG.error("Error starting Shard " + i + ": ", e);
             }
         }
-/*
+
         executor.scheduleAtFixedRate(() -> {
             for (Shard shard : shards)
                 GCounter.update(shard);
-        }, 0, 30, TimeUnit.MINUTES); */
+        }, 0, 30, TimeUnit.MINUTES);
     }
 }

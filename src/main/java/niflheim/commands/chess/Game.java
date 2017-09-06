@@ -133,7 +133,7 @@ public class Game extends Command {
 
         if (args[0].equalsIgnoreCase("w"))
             context.channel.sendMessage(embed.setDescription("Player started game as white.")
-                    .setThumbnail("http://www.fen-to-image.com/image/" + options.getFen().split("\\s+")[0])
+                    .setThumbnail("http://www.fen-to-image.com/image/24/single/coords/" + options.getFen().split("\\s+")[0])
                     .build()).queue();
         else {
             Okita.stockfishQueue.playerMove(new PlayerMove(context.user, null, options.getFen(), 2, context));

@@ -5,6 +5,7 @@ import niflheim.Okita;
 import niflheim.rethink.UserOptions;
 
 import java.awt.*;
+import java.util.Arrays;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.TimeUnit;
@@ -22,7 +23,7 @@ public class StockfishQueue {
                         UserOptions options = Okita.registry.ofUser(move.getId());
                         EmbedBuilder embed = new EmbedBuilder().setColor(Color.CYAN)
                                 .setAuthor(move.ctx.user.getName() + "'s Game", null, move.ctx.user.getEffectiveAvatarUrl())
-                                .setFooter("Chess powered by Stockfish 8", null);
+                                .setFooter("Pawn promotion works by adding `q`ueen, `b`ishop, k`n`ight, or `r`ook to end of move.", null);
 
                         switch (move.getCommandType()) {
                             case 0:
@@ -38,17 +39,18 @@ public class StockfishQueue {
                                         .setAuthor(move.ctx.user.getName() + "'s Game", null, move.ctx.user.getEffectiveAvatarUrl())
                                         .setFooter("Chess powered by Stockfish 8", null);
 
-                                String legalMoves = Okita.stockfish.getLegalMoves(move.getFen());
+                                String[] legalMoves = Okita.stockfish.getLegalMoves(move.getFen()).split(": 1\n");
 
-                                if (!legalMoves.contains(move.getMove().toLowerCase())) {
+                                if (!Arrays.asList(legalMoves).contains(move.getMove().toLowerCase())) {
                                     move.ctx.channel.sendMessage("Illegal move!").queue();
                                     break;
                                 }
 
                                 options.setFEN(Okita.stockfish.movePiece(move.getFen(), move.getMove().toLowerCase()).split("Fen: ")[1].split("\n")[0]);
+                                options.save();
 
                                 if (!Okita.stockfish.getLegalMoves(options.getFen()).contains(":")) {
-                                    move.ctx.channel.sendMessage(embed1.setDescription("Checkmate! Player wins!")
+                                    move.ctx.channel.sendMessage(embed1.setDescription("Player moves " + move.getMove() + " for checkmate! Player wins!")
                                             .setThumbnail("http://www.fen-to-image.com/image/24/single/coords/" + options.getFen().split("\\s+")[0])
                                             .build()).queue();
 
@@ -57,14 +59,13 @@ public class StockfishQueue {
                                     break;
                                 }
 
-                                Okita.stockfish.sendCommand("setoption name Skill Level value " + options.getDifficulty()*4);
-                                Okita.stockfish.getOutput(0);
+                                Okita.stockfish.sendCommand("setoption name Skill Level value " + options.getDifficulty() * 4);
                                 String bestMove = Okita.stockfish.getBestMove(options.getFen(), 100);
-                                options.setFEN(Okita.stockfish.movePiece(options.getFen(), bestMove).split("Fen: ")[1].split("Key")[0]);
+                                options.setFEN(Okita.stockfish.movePiece(options.getFen(), bestMove).split("Fen: ")[1].split("\n")[0]);
                                 options.save();
 
                                 if (!Okita.stockfish.getLegalMoves(options.getFen()).contains(":")) {
-                                    move.ctx.channel.sendMessage(embed1.setDescription("Checkmate! Computer wins!")
+                                    move.ctx.channel.sendMessage(embed1.setDescription("Computer moves " + bestMove + " for checkmate! Computer wins!")
                                             .setThumbnail("http://www.fen-to-image.com/image/24/single/coords/" + options.getFen().split("\\s+")[0])
                                             .build()).queue();
 
@@ -83,7 +84,6 @@ public class StockfishQueue {
                                         .setFooter("Chess powered by Stockfish 8", null);
 
                                 Okita.stockfish.sendCommand("setoption name Skill Level value " + options.getDifficulty());
-                                Okita.stockfish.getOutput(0);
                                 String bestMove1 = Okita.stockfish.getBestMove(options.getFen(), 100);
                                 options.setFEN(Okita.stockfish.movePiece(options.getFen(), bestMove1).split("Fen: ")[1].split("\nKey")[0]);
                                 options.save();
