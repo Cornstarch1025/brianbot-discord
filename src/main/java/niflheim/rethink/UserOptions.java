@@ -13,6 +13,7 @@ public class UserOptions {
     private String fen;
     private HashMap<String, ArrayList<String>> playlist;
 
+    private int difficulty;
     private int level = 0;
 
     @ConstructorProperties("id")
@@ -35,6 +36,10 @@ public class UserOptions {
         return playlist;
     }
 
+    public int getDifficulty() {
+        return difficulty;
+    }
+
     public int getLevel() {
         return level;
     }
@@ -51,15 +56,19 @@ public class UserOptions {
         playlist.remove(name);
     }
 
+    public void setDifficulty(int difficulty) {
+        this.difficulty = difficulty;
+    }
+
     public void setLevel(int level) {
         this.level = level;
     }
 
-    public void save(){
+    public void save() {
         Okita.DATABASE.saveUserOptions(this);
     }
 
-    public void delete(){
+    public void delete() {
         Okita.DATABASE.deleteUserOptions(id);
     }
 }

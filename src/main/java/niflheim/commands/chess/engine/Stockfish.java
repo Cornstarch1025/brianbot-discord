@@ -11,7 +11,8 @@ public class Stockfish {
 	private BufferedReader processReader;
 	private OutputStreamWriter processWriter;
 
-	private static final String PATH = "resources/stockfish.exe";
+	private static final String PATH = "resources/stockfish";
+	//private static final String PATH = "resources/stockfish.exe";
 
 	public boolean startEngine() {
 		try {
@@ -52,6 +53,12 @@ public class Stockfish {
 		}
 		return buffer.toString();
 	}
+
+	public String movePiece(String fen, String move) {
+	    sendCommand("position fen " + fen + " moves " + move);
+	    sendCommand("d");
+	    return getOutput(0);
+    }
 
 	public String getBestMove(String fen, int waitTime) {
 		sendCommand("position fen " + fen);

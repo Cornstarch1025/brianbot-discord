@@ -8,6 +8,7 @@ import net.dv8tion.jda.core.entities.VoiceChannel;
 import niflheim.audio.MusicCore;
 import niflheim.commands.LoadCommands;
 import niflheim.commands.chess.engine.Stockfish;
+import niflheim.commands.chess.engine.StockfishQueue;
 import niflheim.core.Shard;
 import niflheim.core.ShardMonitor;
 import niflheim.listeners.EventListener;
@@ -34,6 +35,7 @@ public class Okita {
     public static MusicCore musicCore = new MusicCore();
     public static ArrayList<Shard> shards = new ArrayList<>();
     public static Stockfish stockfish = new Stockfish();
+    public static StockfishQueue stockfishQueue = new StockfishQueue();
     public static ShardMonitor monitor;
     public static ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
 
@@ -49,7 +51,9 @@ public class Okita {
 
         if (stockfish.startEngine()) {
             LOG.info("Stockfish Engine successfully started.");
+            stockfish.sendCommand("uci");
             stockfish.sendCommand("setoption name Threads value " + Runtime.getRuntime().availableProcessors()/2);
+            stockfish.getOutput(0);
         }
         else
             LOG.info("Something went wrong starting Stockfish.");

@@ -1,15 +1,13 @@
 package niflheim.commands.chess;
 
-import net.dv8tion.jda.core.EmbedBuilder;
 import niflheim.Okita;
 import niflheim.commands.Category;
 import niflheim.commands.Command;
 import niflheim.commands.CommandFrame;
 import niflheim.commands.Scope;
+import niflheim.commands.chess.engine.PlayerMove;
 import niflheim.core.Context;
 import niflheim.rethink.UserOptions;
-
-import java.awt.*;
 
 @CommandFrame(
         help = "Displays User's current chess game.",
@@ -19,7 +17,12 @@ import java.awt.*;
         scope = Scope.TEXT
 )
 public class Display extends Command {
-    public void execute(Context context, String[] args) {/*
+    public void execute(Context context, String[] args) {
+        if (args.length != 0) {
+            context.invalid(this);
+            return;
+        }
+
         UserOptions options = Okita.registry.ofUser(context.user.getId());
 
         if (options.getFen() == null) {
@@ -27,7 +30,6 @@ public class Display extends Command {
             return;
         }
 
-        EmbedBuilder embed = new EmbedBuilder().setColor(Color.CYAN)
-                .setAuthor(context.user.getName() + "'s Game", null, context.user.getEffectiveAvatarUrl()) */
+        Okita.stockfishQueue.playerMove(new PlayerMove(context.user, null, options.getFen(), 0, context));
     }
 }

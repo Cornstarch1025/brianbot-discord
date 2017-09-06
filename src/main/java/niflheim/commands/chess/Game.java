@@ -10,6 +10,7 @@ import niflheim.commands.Category;
 import niflheim.commands.Command;
 import niflheim.commands.CommandFrame;
 import niflheim.commands.Scope;
+import niflheim.commands.chess.engine.PlayerMove;
 import niflheim.core.Context;
 import niflheim.rethink.UserOptions;
 
@@ -22,7 +23,7 @@ import java.util.concurrent.TimeUnit;
         help = "Challenges Stockfish Chess AI to a game.",
         usage = ".game",
         cooldown = 3000L,
-        category = Category.FUN,
+        category = Category.CHESS,
         scope = Scope.TEXT
 )
 public class Game extends Command {
@@ -119,10 +120,23 @@ public class Game extends Command {
     }
 
     private void init(Context context, String[] args) {
-        String FEN = args[0].equalsIgnoreCase("w") ? "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1" : "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR b KQkq - 0 1";
+        String FEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
         UserOptions options = Okita.registry.ofUser(context.user.getId());
 
         options.setFEN(FEN);
+        options.setDifficulty(Integer.parseInt(args[1]));
         options.save();
+
+        EmbedBuilder embed = new EmbedBuilder().setColor(Color.CYAN)
+                .setAuthor(context.user.getName() + "'s Game", null, context.user.getEffectiveAvatarUrl())
+                .setFooter("Chess powered by Stockfish 8", null);
+
+        if (args[0].equalsIgnoreCase("w"))
+            context.channel.sendMessage(embed.setDescription("Player started game as white.")
+                    .setThumbnail("http://www.fen-to-image.com/image/" + options.getFen().split("\\s+")[0])
+                    .build()).queue();
+        else {
+            Okita.stockfishQueue.playerMove(new PlayerMove(context.user, null, options.getFen(), 2, context));
+        }
     }
 }
