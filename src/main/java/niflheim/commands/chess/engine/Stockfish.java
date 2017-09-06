@@ -11,7 +11,7 @@ public class Stockfish {
 	private BufferedReader processReader;
 	private OutputStreamWriter processWriter;
 
-	private static final String PATH = "stockfish";
+	private static final String PATH = "./stockfish";
 	//private static final String PATH = "resources/stockfish.exe";
 
 	public boolean startEngine() {
