@@ -23,7 +23,7 @@ public class StockfishQueue {
                         UserOptions options = Okita.registry.ofUser(move.getId());
                         EmbedBuilder embed = new EmbedBuilder().setColor(Color.CYAN)
                                 .setAuthor(move.ctx.user.getName() + "'s Game", null, move.ctx.user.getEffectiveAvatarUrl())
-                                .setFooter("Pawn promotion works by adding `q`ueen, `b`ishop, k`n`ight, or `r`ook to end of move.", null);
+                                .setFooter("Pawn promotion works by adding q, b, n, or r to end of a move.", null);
 
                         switch (move.getCommandType()) {
                             case 0:
@@ -35,9 +35,6 @@ public class StockfishQueue {
                                         .build()).queue();
                                 break;
                             case 1:
-                                EmbedBuilder embed1 = new EmbedBuilder().setColor(Color.CYAN)
-                                        .setAuthor(move.ctx.user.getName() + "'s Game", null, move.ctx.user.getEffectiveAvatarUrl());
-
                                 String[] legalMoves = Okita.stockfish.getLegalMoves(move.getFen()).split(": 1\n");
 
                                 if (!Arrays.asList(legalMoves).contains(move.getMove().toLowerCase())) {
@@ -49,7 +46,7 @@ public class StockfishQueue {
                                 options.save();
 
                                 if (!Okita.stockfish.getLegalMoves(options.getFen()).contains(":")) {
-                                    move.ctx.channel.sendMessage(embed1.setDescription("Player moves " + move.getMove() + " for checkmate! Player wins!")
+                                    move.ctx.channel.sendMessage(embed.setDescription("Player moves " + move.getMove() + " for checkmate! Player wins!")
                                             .setThumbnail("http://www.fen-to-image.com/image/24/single/coords/" + options.getFen().split("\\s+")[0])
                                             .build()).queue();
 
@@ -64,7 +61,7 @@ public class StockfishQueue {
                                 options.save();
 
                                 if (!Okita.stockfish.getLegalMoves(options.getFen()).contains(":")) {
-                                    move.ctx.channel.sendMessage(embed1.setDescription("Computer moves " + bestMove + " for checkmate! Computer wins!")
+                                    move.ctx.channel.sendMessage(embed.setDescription("Computer moves " + bestMove + " for checkmate! Computer wins!")
                                             .setThumbnail("http://www.fen-to-image.com/image/24/single/coords/" + options.getFen().split("\\s+")[0])
                                             .build()).queue();
 
@@ -73,7 +70,7 @@ public class StockfishQueue {
                                     break;
                                 }
 
-                                move.ctx.channel.sendMessage(embed1.setDescription("Player moved " + move.getMove().toLowerCase() + ". Computer moved " + bestMove)
+                                move.ctx.channel.sendMessage(embed.setDescription("Player moved " + move.getMove().toLowerCase() + ". Computer moved " + bestMove)
                                         .setThumbnail("http://www.fen-to-image.com/image/24/single/coords/" + options.getFen().split("\\s+")[0])
                                         .build()).queue();
                                 break;

@@ -49,9 +49,9 @@ public class GCounter {
         if (Settings.BOTSPW == null) return;
 
         JSONObject push = new JSONObject()
-                .put("server_count", shard.getJda().getGuilds().size())
                 .put("shard_id", shard.getId())
-                .put("shard_count", Settings.SHARDS);
+                .put("shard_count", Settings.SHARDS)
+                .put("server_count", shard.getJda().getGuilds().size());
 
         Request request = new Request.Builder()
                 .url("https://bots.discord.pw/api/bots/298963480042668032/stats")

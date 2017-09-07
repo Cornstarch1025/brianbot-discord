@@ -120,8 +120,14 @@ public class Okita {
         }
 
         executor.scheduleAtFixedRate(() -> {
-            for (Shard shard : shards)
+            for (Shard shard : shards) {
                 GCounter.update(shard);
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
         }, 0, 30, TimeUnit.MINUTES);
     }
 }

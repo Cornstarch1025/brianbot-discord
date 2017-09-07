@@ -36,7 +36,7 @@ public class Resign extends Command {
         EmbedBuilder embed = new EmbedBuilder().setColor(Color.CYAN)
                 .setAuthor(context.user.getName() + "'s Game", null, context.user.getEffectiveAvatarUrl())
                 .setThumbnail(context.user.getEffectiveAvatarUrl())
-                .setDescription("Player has resigned after " + (Integer.parseInt(options.getFen().substring(options.getFen().lastIndexOf(" ") + 1, options.getFen().lastIndexOf(" ") + 2)) - 1) + " move(s).")
+                .setDescription("Player has resigned the game. Computer wins!")
                 .setFooter("Chess powered by Stockfish 8", null);
 
         options.setFEN(null);
