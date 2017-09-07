@@ -114,6 +114,7 @@ public class Okita {
         for (int i = 0; i < Settings.SHARDS; i++) {
             try {
                 shards.add(i, new Shard(i, listener));
+                Thread.sleep(5000);
             } catch (Exception e) {
                 LOG.error("Error starting Shard " + i + ": ", e);
             }
