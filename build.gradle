@@ -19,9 +19,9 @@ repositories {
 }
 
 dependencies {
-    compile 'net.dv8tion:JDA:3.2.0_251'
+    compile 'net.dv8tion:JDA:3.2.0_265'
 
-    compile 'com.jagrosh:JDA-Utilities:1.6'
+    compile 'com.jagrosh:JDA-Utilities:1.7'
 
     compile 'com.sedmelluq:jda-nas:1.0.5'
     compile 'com.sedmelluq:lavaplayer:1.2.43'
