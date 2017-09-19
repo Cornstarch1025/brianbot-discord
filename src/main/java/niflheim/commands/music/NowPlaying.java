@@ -13,6 +13,8 @@ import org.apache.commons.lang3.time.DateFormatUtils;
 import java.awt.*;
 
 @CommandFrame(
+        name = "NowPlaying",
+        example = ".nowplaying",
         aliases = "np",
         help = "Shows currently playing song as well as position.",
         usage = ".np",
@@ -37,10 +39,9 @@ public class NowPlaying extends Command {
         if (track != null) {
             EmbedBuilder embed = new EmbedBuilder()
                     .setColor(Color.CYAN)
-                    .setTitle(track.getInfo().title)
+                    .setTitle(track.getInfo().title, track.getInfo().uri)
                     .setDescription(progress(track))
                     .addField("Author", track.getInfo().author, true)
-                    .addField("Url", "[Click me!](" + track.getInfo().uri + ")", true)
                     .setFooter(context.time(), null);
 
             context.channel.sendMessage(embed.build()).queue();

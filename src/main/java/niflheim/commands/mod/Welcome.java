@@ -8,6 +8,8 @@ import niflheim.core.Context;
 import niflheim.rethink.GuildOptions;
 
 @CommandFrame(
+        name = "Welcome",
+        example = ".welcome Has joined the server!",
         help = "Sets the guild's welcome message for whenever a member joins.",
         usage = ".welcome <Message>, .welcome clear, .welcome enable",
         cooldown = 5000L,

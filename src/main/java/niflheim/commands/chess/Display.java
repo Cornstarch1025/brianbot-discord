@@ -10,6 +10,8 @@ import niflheim.core.Context;
 import niflheim.rethink.UserOptions;
 
 @CommandFrame(
+        name = "Display",
+        example = ".display",
         help = "Displays User's current chess game.",
         usage = ".display",
         cooldown = 3000L,

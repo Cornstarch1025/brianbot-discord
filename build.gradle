@@ -8,7 +8,7 @@ plugins {
 mainClassName= 'niflheim.Okita'
 
 group 'Niflheim'
-version '1.0'
+version '1.1'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -19,7 +19,7 @@ repositories {
 }
 
 dependencies {
-    compile 'net.dv8tion:JDA:3.3.0_270'
+    compile 'net.dv8tion:JDA:3.3.0_272'
 
     compile 'com.jagrosh:JDA-Utilities:1.7'
 

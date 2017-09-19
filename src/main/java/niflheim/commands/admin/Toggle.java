@@ -13,6 +13,8 @@ import java.util.Arrays;
 import java.util.Map;
 
 @CommandFrame(
+        name = "Toggle",
+        example = ".toggle ping",
         help = "Toggles whether a module or command can be used.",
         usage = ".toggle <Module>, .toggle <Command>",
         admin = true,

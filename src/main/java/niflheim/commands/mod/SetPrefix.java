@@ -8,6 +8,8 @@ import niflheim.core.Context;
 import niflheim.utils.Settings;
 
 @CommandFrame(
+        name = "SetPrefix",
+        example = ".setprefix >",
         help = "Sets the guild prefix",
         usage = ".setprefix <prefix>",
         cooldown = 3000L,
@@ -24,7 +26,7 @@ public class SetPrefix extends Command {
             case 0:
                 context.guildOptions.setPrefix(Settings.PREFIX);
                 context.guildOptions.save();
-                context.channel.sendMessage("No prefix specified so it was reset to `" + Settings.PREFIX + "`!").queue();
+                context.channel.sendMessage("No prefix specified so it was reset to `" + Settings.PREFIX + "`").queue();
                 break;
             case 1:
                 context.guildOptions.setPrefix(args[0]);

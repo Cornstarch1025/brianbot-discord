@@ -7,6 +7,8 @@ import niflheim.commands.Scope;
 import niflheim.core.Context;
 
 @CommandFrame(
+        name = "Mock",
+        example = ".mock static aboose",
         help = "Mock your enemies!",
         usage = ".mock <Message>",
         cooldown = 3000L,
@@ -27,7 +29,7 @@ public class Mock extends Command {
 
         String mocker = mock(list.toString());
 
-        context.channel.sendMessage(mocker).queue();
+        context.channel.sendMessage("<:badmeme:313369861797445632> " + mocker + "<:badmeme:313369861797445632>").queue();
     }
 
     private String mock(String input) {

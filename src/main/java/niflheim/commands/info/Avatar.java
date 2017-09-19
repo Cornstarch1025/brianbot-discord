@@ -11,6 +11,8 @@ import niflheim.core.Context;
 import java.awt.*;
 
 @CommandFrame(
+        name = "Avatar",
+        example = ".avatar Niflheim",
         help = "Displays a users avatar.",
         usage = ".avatar, .avatar <User>",
         cooldown = 3000L,

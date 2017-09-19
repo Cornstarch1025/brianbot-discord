@@ -11,6 +11,8 @@ import niflheim.core.Context;
 import java.awt.*;
 
 @CommandFrame(
+        name = "Leave",
+        example = ".leave",
         aliases = "disconnect",
         help = "Disconnects from a voice channel.",
         usage = ".leave",

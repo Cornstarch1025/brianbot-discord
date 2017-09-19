@@ -10,9 +10,11 @@ import niflheim.core.Context;
 import java.awt.*;
 
 @CommandFrame(
+        name = "Msg",
         aliases = "message",
         help = "Messages a User in Okita's directory.",
         usage = ".msg <User ID> <Message>",
+        example = ".msg 191410544278765568 Hello!",
         admin = true,
         category = Category.ADMIN
 )

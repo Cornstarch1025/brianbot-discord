@@ -9,10 +9,13 @@ import niflheim.core.Context;
 import niflheim.core.Core;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
 
 @CommandFrame(
+        name = "Help",
+        example = ".help Chess",
         aliases = {"halp"},
         help = "Displays help information on modules as well as commands.",
         usage = ".help, .help <Module>, .help <Command>",
@@ -21,6 +24,7 @@ import java.util.Map;
         scope = Scope.GUILD
 )
 public class Help extends Command {
+    private ArrayList<String> modules = new ArrayList<>(Arrays.asList("admin", "general", "information", "moderation", "fun", "music", "chess", "utility"));
     public void execute(Context context, String[] args) {
         EmbedBuilder embed = new EmbedBuilder().setColor(Color.CYAN);
 
@@ -45,15 +49,21 @@ public class Help extends Command {
             case 1:
                 if(Core.getCommands().containsKey(args[0].toLowerCase())){
                     Command cmd = Core.getCommands().get(args[0].toLowerCase());
-                    embed.setTitle(args[0].toUpperCase().substring(0,1) + args[0].toLowerCase().substring(1) + " Command")
+                    embed.setTitle(cmd.getInfo().name() + " Command")
                             .setDescription(cmd.getInfo().help())
                             .addField("Usage", cmd.getInfo().usage(), false)
-                            .addField("Alias", Arrays.toString(cmd.getInfo().aliases()).substring(1, Arrays.toString(cmd.getInfo().aliases()).length() - 1), false)
+                            .addField("Example Usage", cmd.getInfo().example(), false)
+                            .addField("Alias", cmd.getInfo().aliases().length > 0 ? Arrays.toString(cmd.getInfo().aliases()).substring(1, Arrays.toString(cmd.getInfo().aliases()).length() - 1) : "No aliases!", false)
                             .setFooter("Donator Level " + cmd.getInfo().level() + " command", null);
 
                     context.channel.sendMessage(embed.build()).queue();
-                    break;
-                }
+                } else if (modules.contains(args[0].toLowerCase())) {
+                    embed.setTitle(args[0].toUpperCase() + args[0].toLowerCase().substring(1) + " Module")
+                            .setDescription(parseModule(args[0].toLowerCase()))
+                            .setFooter(".Help <Command> will pull up more information.", null);
+                } else
+                    context.channel.sendMessage("Command or Module note found!").queue();
+                break;
         }
     }
 
@@ -68,5 +78,44 @@ public class Help extends Command {
             commands.deleteCharAt(commands.lastIndexOf(","));
 
         return commands.toString();
+    }
+
+    private String parseModule(String module) {
+        Category category;
+
+        switch (module){
+            default:
+                category = null;
+                break;
+            case "admin":
+                category = Category.ADMIN;
+                break;
+            case "general":
+                category = Category.GENERAL;
+                break;
+            case "information":
+                category = Category.INFO;
+                break;
+            case "moderation":
+                category = Category.MOD;
+                break;
+            case "fun":
+                category = Category.FUN;
+                break;
+            case "music":
+                category = Category.MUSIC;
+                break;
+            case "chess":
+                category = Category.CHESS;
+                break;
+            case "utility":
+                category = Category.UTILITY;
+                break;
+        }
+
+        if (category == null)
+            return null;
+        else
+            return parseModule(category);
     }
 }

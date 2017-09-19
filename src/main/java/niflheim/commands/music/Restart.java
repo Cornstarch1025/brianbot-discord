@@ -7,6 +7,8 @@ import niflheim.commands.Scope;
 import niflheim.core.Context;
 
 @CommandFrame(
+        name = "Restart",
+        example = ".restart",
         help = "Restarts the current song.",
         usage = ".restart",
         cooldown = 3000L,

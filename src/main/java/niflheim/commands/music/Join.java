@@ -15,6 +15,8 @@ import niflheim.core.Context;
 import java.awt.*;
 
 @CommandFrame(
+        name = "Join",
+        example = ".join Music",
         aliases = "connect",
         help = "Joins a voice channel.",
         usage = ".join <Channel>",

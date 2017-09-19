@@ -14,6 +14,8 @@ import java.io.IOException;
 import java.util.Random;
 
 @CommandFrame(
+        name = "Xkcd",
+        example = ".xkcd",
         help = "Sends a random Xkcd comic.",
         usage = ".xkcd",
         cooldown = 3000L,

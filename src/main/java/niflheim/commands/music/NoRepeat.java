@@ -12,6 +12,8 @@ import niflheim.core.Context;
 import java.awt.*;
 
 @CommandFrame(
+        name = "NoRepeat",
+        example = ".norepeat",
         help = "Stops repeating the current track.",
         usage = ".norepeat",
         cooldown = 3000L,

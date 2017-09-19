@@ -12,6 +12,8 @@ import niflheim.core.Context;
 import java.awt.*;
 
 @CommandFrame(
+        name = "User",
+        example = ".user Niflheim",
         aliases = {"member"},
         help = "Displays basic information on a User.",
         usage = ".user <User>",

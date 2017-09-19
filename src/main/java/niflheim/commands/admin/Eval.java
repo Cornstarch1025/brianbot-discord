@@ -14,8 +14,10 @@ import java.awt.*;
 import java.util.concurrent.*;
 
 @CommandFrame(
+        name = "Eval",
         help = "Evaluates given Nashorn code and returns output or debug output.",
         usage = ".eval <code>",
+        example = ".eval channel.sendMessage(\"Hello World!\").queue();",
         admin = true,
         toggleable = false,
         category = Category.ADMIN

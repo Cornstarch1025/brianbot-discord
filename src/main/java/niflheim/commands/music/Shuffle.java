@@ -11,6 +11,8 @@ import niflheim.core.Context;
 import java.awt.*;
 
 @CommandFrame(
+        name = "Shuffle",
+        example = ".shuffle",
         help = "Shuffles the queue.",
         usage = ".shuffle",
         cooldown = 3000L,

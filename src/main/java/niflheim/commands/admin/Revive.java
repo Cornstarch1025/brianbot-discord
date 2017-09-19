@@ -8,6 +8,8 @@ import niflheim.core.Context;
 import niflheim.utils.Settings;
 
 @CommandFrame(
+        name = "Revive",
+        example = ".revive 0",
         help = "Revives a targeted shard manually.",
         usage = ".revive <Shard ID>",
         admin = true,

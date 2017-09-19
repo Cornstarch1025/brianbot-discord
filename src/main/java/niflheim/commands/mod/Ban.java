@@ -12,6 +12,8 @@ import niflheim.core.Context;
 import java.awt.*;
 
 @CommandFrame(
+        name = "Ban",
+        example = ".ban @Niflheim",
         help = "Bans all mentioned users from the server.",
         usage = ".ban <@Members...>",
         cooldown = 3000L,

@@ -12,6 +12,8 @@ import niflheim.core.Context;
 import java.awt.*;
 
 @CommandFrame(
+        name = "Stop",
+        example = ".stop",
         help = "Stops the music player and clears the queue.",
         usage = ".stop",
         cooldown = 3000L,

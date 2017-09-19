@@ -8,6 +8,8 @@ import niflheim.core.Context;
 import niflheim.rethink.GuildOptions;
 
 @CommandFrame(
+        name = "SetChannel",
+        example = ".setchannel",
         help = "Set's a designated channel for guild welcome and goodbye messages. If no channel is set welcome and goodbye messages will send in the public channel.",
         usage = ".setchannel, .setchannel clear",
         cooldown = 3000L,

@@ -13,6 +13,8 @@ import niflheim.core.Context;
 import java.util.concurrent.TimeUnit;
 
 @CommandFrame(
+        name = "Youtube",
+        example = ".youtube Search Terms!",
         aliases = {"yt"},
         help = ".yt <Search>",
         usage = "Searches and plays a song from Youtube given a search.",

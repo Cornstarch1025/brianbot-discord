@@ -13,6 +13,8 @@ import niflheim.core.Context;
 import java.util.concurrent.TimeUnit;
 
 @CommandFrame(
+        name = "PlaylistQueue",
+        example = ".playlistqueue https://playlist.url",
         aliases = {"pq"},
         help = "Queues a playlist from a URL.",
         usage = ".pq <Url>",

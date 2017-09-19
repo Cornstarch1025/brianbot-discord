@@ -10,11 +10,15 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 public @interface CommandFrame {
+    String name() default "";
+
     String[] aliases() default {};
 
     String help() default "No help provided";
 
     String usage() default "";
+
+    String example() default "";
 
     long cooldown() default 0L;
 

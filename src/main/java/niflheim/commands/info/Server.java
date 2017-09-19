@@ -14,9 +14,11 @@ import niflheim.utils.Settings;
 import java.awt.*;
 
 @CommandFrame(
+        name = "Server",
+        example = ".server roles",
         aliases = {"guild"},
         help = "Displays server basic information.",
-        usage = ".server",
+        usage = ".server, .server roles",
         cooldown = 3000L,
         category = Category.INFO,
         scope = Scope.GUILD
@@ -37,7 +39,7 @@ public class Server extends Command {
                         .addField("Members[" + context.guild.getMembers().size() + "]", getOnline(context.guild), true)
                         .addField("Region", context.guild.getRegion().toString(), true)
                         .addField("Channels[" + (context.guild.getTextChannels().size() + context.guild.getVoiceChannels().size()) + "]", context.guild.getTextChannels().size() + " Text and " + context.guild.getVoiceChannels().size() + " Voice", true)
-                        .addField("Default Channel", context.guild.getPublicChannel() == null ? "None" : context.guild.getPublicChannel().getAsMention(), true)
+                        .addField("Shard", Integer.toString(context.guild.getJDA().getShardInfo().getShardId()), true)
                         .addField("Server Owner", context.guild.getOwner().getUser().getName() + "#" + context.guild.getOwner().getUser().getDiscriminator(), false)
                         .addField("Server Roles[" + context.guild.getRoles().size() + "]", "Run " + Settings.PREFIX + "server roles to get a list of all server  roles", false)
                         .setFooter(context.time(), null);

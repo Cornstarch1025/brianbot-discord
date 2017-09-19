@@ -10,6 +10,8 @@ import niflheim.core.Context;
 import niflheim.rethink.UserOptions;
 
 @CommandFrame(
+        name = "Move",
+        example = ".move e2e4",
         help = "Moves a chess piece!",
         usage = ".move <Move>",
         cooldown = 1000L,

@@ -7,6 +7,8 @@ import niflheim.commands.Scope;
 import niflheim.core.Context;
 
 @CommandFrame(
+        name = "CoinFlip",
+        example = ".coinflip",
         aliases = {"flip"},
         help = "Flips a coin!",
         usage = ".coinflip",

@@ -7,6 +7,8 @@ import niflheim.commands.Scope;
 import niflheim.core.Context;
 
 @CommandFrame(
+        name = "Roulette",
+        example = ".roulette",
         help = "A good ol game of Russian Roulette!",
         usage = ".roulette",
         cooldown = 3000L,

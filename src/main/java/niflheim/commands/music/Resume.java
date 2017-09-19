@@ -12,6 +12,8 @@ import niflheim.core.Context;
 import java.awt.*;
 
 @CommandFrame(
+        name = "Resume",
+        example = ".resume",
         help = "Resumes the music player.",
         usage = ".resume",
         cooldown = 3000L,

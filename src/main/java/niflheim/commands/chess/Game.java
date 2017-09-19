@@ -19,6 +19,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 
 @CommandFrame(
+        name = "Game",
+        example = ".game",
         aliases = {"challenge"},
         help = "Challenges Stockfish Chess AI to a game.",
         usage = ".game",

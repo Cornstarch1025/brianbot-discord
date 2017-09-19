@@ -11,6 +11,8 @@ import niflheim.core.Context;
 import java.awt.*;
 
 @CommandFrame(
+        name = "Search",
+        example = ".search Niflheim",
         help = "Searches for a User in Okita's directory.",
         usage = ".search <Username>",
         admin = true,

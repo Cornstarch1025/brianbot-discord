@@ -10,6 +10,8 @@ import niflheim.commands.Scope;
 import niflheim.core.Context;
 
 @CommandFrame(
+        name = "TempBan",
+        example = ".tempban 5 @Niflheim",
         help = "Temporarily bans one member from the guild for a set amount of days.",
         usage = ".tempban <# Days> <@Member>",
         cooldown = 3000L,

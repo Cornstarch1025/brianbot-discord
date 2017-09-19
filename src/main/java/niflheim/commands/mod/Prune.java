@@ -16,6 +16,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 @CommandFrame(
+        name = "Prune",
+        example = ".prune 100",
         aliases = {"nuke"},
         help = "Prunes a channel of 2-100 messages, but cannot delete messages older than 2 weeks.",
         usage = ".prune <Number>",

@@ -8,6 +8,8 @@ import niflheim.commands.Scope;
 import niflheim.core.Context;
 
 @CommandFrame(
+        name = "Autorole",
+        example = ".autorole Member",
         help = "Sets the autorole for the guild.",
         usage = ".autorole <Role>",
         cooldown = 5000L,

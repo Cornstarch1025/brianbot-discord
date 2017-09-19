@@ -6,6 +6,8 @@ import niflheim.commands.CommandFrame;
 import niflheim.core.Context;
 
 @CommandFrame(
+        name = "SetName",
+        example = ".setname Okita",
         help = "Sets a new name for the bot.",
         usage = ".setname <Name>",
         admin = true,

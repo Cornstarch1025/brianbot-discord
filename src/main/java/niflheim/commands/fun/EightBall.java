@@ -7,6 +7,8 @@ import niflheim.commands.Scope;
 import niflheim.core.Context;
 
 @CommandFrame(
+        name = "Eightball",
+        example = ".eightball Do I have good luck today?",
         aliases = {"8ball"},
         help = "Do you dare test your fate with the Almighty 8Ball?",
         usage = ".8ball <Question>",

@@ -15,6 +15,8 @@ import java.io.File;
 import java.util.List;
 
 @CommandFrame(
+        name = "Spoiler",
+        example = ".spoiler Spoiler Text!",
         help = "Creates a spoiler for others to view at their own risk!",
         usage = ".spoiler <Text>",
         cooldown = 3000L,
@@ -70,7 +72,7 @@ public class Spoiler extends Command {
 
             for (int i = 0; i < lines.size(); i++)
                 textG.drawString(lines.get(i), BUFFER + 1, (i + 1) * (FONT.getSize() + BUFFER) - 1);
-            hoverG.drawString("Hover to view Spoiler Text", BUFFER + 1, FONT.getSize() + BUFFER - 1);
+            hoverG.drawString("View Spoiler!", BUFFER + 1, FONT.getSize() + BUFFER - 1);
 
             AnimatedGifEncoder e = new AnimatedGifEncoder();
             e.setRepeat(0);

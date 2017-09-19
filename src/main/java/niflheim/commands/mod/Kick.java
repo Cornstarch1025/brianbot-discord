@@ -12,6 +12,8 @@ import niflheim.core.Context;
 import java.awt.*;
 
 @CommandFrame(
+        name = "Kick",
+        example = ".kick @Niflheim",
         help = "Kicks all mentioned users from the server.",
         usage = ".kick <@Members...>",
         cooldown = 3000L,

@@ -8,6 +8,8 @@ import niflheim.core.Context;
 import niflheim.core.Shard;
 
 @CommandFrame(
+        name = "Shutdown",
+        example = ".shutdown",
         help = "Shuts down the bot.",
         usage = ".shutdown",
         admin = true,

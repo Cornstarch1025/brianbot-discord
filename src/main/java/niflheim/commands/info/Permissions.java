@@ -13,6 +13,8 @@ import niflheim.core.Context;
 import java.awt.*;
 
 @CommandFrame(
+        name = "Permissions",
+        example = ".permissions channel",
         aliases = {"perms"},
         help = "Lists a members permissions guild or channel wide.",
         usage = ".perms, .perms channel",

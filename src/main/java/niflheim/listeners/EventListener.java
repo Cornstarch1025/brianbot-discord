@@ -56,7 +56,7 @@ public class EventListener extends ListenerAdapter {
             TextChannel channel = event.getGuild().getTextChannelById(options.getMessageChannel());
 
             if (channel != null && event.getGuild().getSelfMember().hasPermission(Permission.MESSAGE_WRITE))
-                channel.sendMessage(event.getUser().getAsMention() + " " + options.getWelcome()).queue();
+                channel.sendMessage("`" + event.getUser().getName() + "` " + options.getWelcome()).queue();
             else {
                 options.setMessageChannel(null);
                 options.save();

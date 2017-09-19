@@ -11,6 +11,8 @@ import java.awt.*;
 import java.lang.management.ManagementFactory;
 
 @CommandFrame(
+        name = "Uptime",
+        example = ".uptime",
         help = "Displays Okita's uptime.",
         usage = ".uptime",
         cooldown = 3000L,

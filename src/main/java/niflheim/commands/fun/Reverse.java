@@ -7,6 +7,8 @@ import niflheim.commands.Scope;
 import niflheim.core.Context;
 
 @CommandFrame(
+        name = "Reverse",
+        example = ".reverse Hello World!",
         help = "Reverses any given text.",
         usage = ".reverse <Text>",
         cooldown = 3000L,

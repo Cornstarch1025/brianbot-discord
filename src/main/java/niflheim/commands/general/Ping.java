@@ -8,6 +8,8 @@ import niflheim.core.Context;
 import java.awt.*;
 
 @CommandFrame(
+        name = "Ping",
+        example = ".ping",
         aliases = {"pong"},
         help = "Checks Okita's ping as well as the websocket.",
         usage = ".ping",

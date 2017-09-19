@@ -14,6 +14,8 @@ import java.awt.*;
 import java.util.Queue;
 
 @CommandFrame(
+        name = "ListQueue",
+        example = ".listqueue 1",
         aliases = {"lq"},
         help = "Lists all queued songs as well as currently playing song.",
         usage = ".lq, .lq <Page>",

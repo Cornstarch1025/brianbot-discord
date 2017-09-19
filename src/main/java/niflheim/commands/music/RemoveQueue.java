@@ -7,6 +7,8 @@ import niflheim.commands.Scope;
 import niflheim.core.Context;
 
 @CommandFrame(
+        name = "RemoveQueue",
+        example = ".removequeue 1",
         aliases = {"rq"},
         help = "Removes an item from the queue.",
         usage = ".rq <Number>",

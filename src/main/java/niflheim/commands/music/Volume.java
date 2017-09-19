@@ -11,6 +11,8 @@ import niflheim.core.Context;
 import java.awt.*;
 
 @CommandFrame(
+        name = "Volume",
+        example = ".volume 50",
         help = "Changes the music player volume.",
         usage = ".volume, .volume <0-100>",
         cooldown = 3000L,

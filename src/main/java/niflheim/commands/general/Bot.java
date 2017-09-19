@@ -14,6 +14,8 @@ import java.awt.*;
 import java.lang.management.ManagementFactory;
 
 @CommandFrame(
+        name = "Bot",
+        example = ".bot",
         aliases = {"okita"},
         help = "Displays basic Okita information.",
         usage = ".bot",
@@ -35,9 +37,6 @@ public class Bot extends Command {
         int guilds = 0;
         int voiceChannels = 0;
         int textChannels = 0;
-        int online = 0;
-        int offline = 0;
-        int idle = 0;
 
         long ss = ManagementFactory.getRuntimeMXBean().getUptime();
         long s = (ss / 1000) % 60;
@@ -53,22 +52,6 @@ public class Bot extends Command {
 
             if(guild.getAudioManager().isConnected())
                 voiceConnections++;
-
-            for(Member member: guild.getMembers()){
-                switch (member.getOnlineStatus()){
-                    default:
-                        break;
-                    case ONLINE:
-                        online++;
-                        break;
-                    case OFFLINE:
-                        offline++;
-                        break;
-                    case IDLE:
-                        idle++;
-                        break;
-                }
-            }
         }
 
         embed.clearFields()
@@ -76,13 +59,13 @@ public class Bot extends Command {
                 .setThumbnail(context.jda.getSelfUser().getEffectiveAvatarUrl())
                 .setDescription("Developed by Niflheim and Kirbyquerby")
                 .addField("Invite Link", "[Invite me!](https://goo.gl/eRbI0V)", true)
-                .addField("Support Server", "[Join!](https://discord.gg/DC5PzXN)", true)
+                .addField("Support Server", "[Join!](https://discord.gg/JBufWFT)", true)
                 .addField("Guilds", Integer.toString(guilds), true)
                 .addField("Voice Connections", Integer.toString(voiceConnections), true)
                 .addField("Text Channels", Integer.toString(textChannels), true)
                 .addField("Voice Channels", Integer.toString(voiceChannels), true)
                 .addField("Uptime", Long.toString(d) + "d " + Long.toString(h) + "h " + Long.toString(m) + "m " + Long.toString(s) + "s", true)
-                .addField("Users", "Total: " + users + "\nOnline: " + online + "\nOffline: " + offline + "\nIdle: " + idle, true)
+                .addField("Users", users + " total Users", true)
                 .setFooter(context.time(), null);
 
         context.channel.sendMessage(embed.build()).queue();

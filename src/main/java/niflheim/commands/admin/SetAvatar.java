@@ -11,6 +11,8 @@ import java.io.InputStream;
 import java.net.URL;
 
 @CommandFrame(
+        name = "SetAvatar",
+        example = ".setavatar https://i.imgur.com/S0NkEwX.jpg",
         help = "Sets the bot's avatar via URL.",
         usage = ".setavatar <Url>",
         admin = true,

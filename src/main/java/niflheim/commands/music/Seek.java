@@ -7,6 +7,8 @@ import niflheim.commands.Scope;
 import niflheim.core.Context;
 
 @CommandFrame(
+        name = "Seek",
+        example = ".seek 1:00",
         help = "Skips to a time in the song.",
         usage = ".skip hh:mm:ss",
         cooldown = 3000L,

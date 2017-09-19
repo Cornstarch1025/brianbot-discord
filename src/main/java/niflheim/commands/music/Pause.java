@@ -12,6 +12,8 @@ import niflheim.core.Context;
 import java.awt.*;
 
 @CommandFrame(
+        name = "Pause",
+        example = ".pause",
         aliases = {"p"},
         help = "Pauses the currently playing track.",
         usage = ".pause",

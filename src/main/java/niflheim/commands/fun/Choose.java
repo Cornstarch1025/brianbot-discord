@@ -9,6 +9,8 @@ import niflheim.core.Context;
 import java.util.Arrays;
 
 @CommandFrame(
+        name = "Choose",
+        example = ".choose Emilia;Rem;Felix",
         aliases = {"pick"},
         help = "Picks an item given a semicolon separated list.",
         usage = ".choose item;item;item...",

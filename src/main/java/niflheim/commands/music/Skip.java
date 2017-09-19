@@ -8,6 +8,8 @@ import niflheim.commands.Scope;
 import niflheim.core.Context;
 
 @CommandFrame(
+        name = "Skip",
+        example = ".skip",
         help = "Skips the currently playing song.",
         usage = ".skip",
         cooldown = 3000L,

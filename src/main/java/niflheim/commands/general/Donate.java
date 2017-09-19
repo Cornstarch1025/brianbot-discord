@@ -10,6 +10,8 @@ import niflheim.core.Context;
 import java.awt.*;
 
 @CommandFrame(
+        name = "Donate",
+        example = ".donate",
         aliases = {"premium"},
         help = "Displays donation links as well as a list of donators.",
         usage = ".donate",

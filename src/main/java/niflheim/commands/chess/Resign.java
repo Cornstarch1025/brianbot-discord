@@ -12,6 +12,8 @@ import niflheim.rethink.UserOptions;
 import java.awt.*;
 
 @CommandFrame(
+        name = "Resign",
+        example = ".resign",
         aliases = {"quit"},
         help = "Resigns your current Chess game.",
         usage = ".resign",

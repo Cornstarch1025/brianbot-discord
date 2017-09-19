@@ -10,6 +10,8 @@ import niflheim.core.Context;
 import java.awt.*;
 
 @CommandFrame(
+        name = "Support",
+        example = ".support",
         help = "Provides the Support Server link.",
         usage = ".support",
         cooldown = 3000L,
@@ -25,7 +27,7 @@ public class Support extends Command {
 
         EmbedBuilder embed = new EmbedBuilder().setColor(Color.CYAN)
                 .setAuthor("Support Server!", null, context.jda.getSelfUser().getEffectiveAvatarUrl())
-                .setDescription("[Use this link to join the Support Server!](https://discord.gg/DC5PzXN)");
+                .setDescription("[Use this link to join the Support Server!](https://discord.gg/JBufWFT)");
 
         context.channel.sendMessage(embed.build()).queue();
     }

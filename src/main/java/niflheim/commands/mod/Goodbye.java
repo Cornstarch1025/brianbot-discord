@@ -8,6 +8,8 @@ import niflheim.core.Context;
 import niflheim.rethink.GuildOptions;
 
 @CommandFrame(
+        name = "Goodbye",
+        example = ".goodbye Has left the server!",
         help = "Sets the guild's goodbye message for whenever a member leaves.",
         usage = ".goodbye <Message>, .goodbye clear, .goodbye enable",
         cooldown = 5000L,

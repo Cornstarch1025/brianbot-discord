@@ -10,6 +10,8 @@ import niflheim.core.Context;
 import java.awt.*;
 
 @CommandFrame(
+        name = "Invite",
+        example = ".invite",
         help = "Provides Okita invite link.",
         usage = ".invite",
         cooldown = 3000L,

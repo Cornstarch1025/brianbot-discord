@@ -12,6 +12,8 @@ import niflheim.core.Context;
 import java.awt.*;
 
 @CommandFrame(
+        name = "Repeat",
+        example = ".repeat",
         help = "Repeats current track until toggled off.",
         usage = ".repeat",
         cooldown = 3000L,
