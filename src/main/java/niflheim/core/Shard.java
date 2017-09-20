@@ -4,8 +4,10 @@ import com.sedmelluq.discord.lavaplayer.jdaudp.NativeAudioSendFactory;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
+import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.exceptions.RateLimitedException;
 import niflheim.Okita;
+import niflheim.audio.GuildMusicManager;
 import niflheim.listeners.EventListener;
 import niflheim.listeners.ShardListener;
 import niflheim.utils.GCounter;
@@ -74,7 +76,9 @@ public class Shard {
     }
 
     public void revive() {
-        //destroy audio connections and audio related stuff
+        for (String x: Okita.musicCore.getMusicManagers().keySet())
+            Okita.musicCore.destroy(Okita.getGuildByID(x));
+
         jda.removeEventListener(eventListener, shardListener);
         jda.shutdown();
 
