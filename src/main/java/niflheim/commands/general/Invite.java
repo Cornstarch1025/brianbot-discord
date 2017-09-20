@@ -27,7 +27,7 @@ public class Invite extends Command {
 
         EmbedBuilder embed = new EmbedBuilder().setColor(Color.CYAN)
                 .setAuthor("Invite me!", null, context.jda.getSelfUser().getEffectiveAvatarUrl())
-                .setDescription("[Use this link to invite me to your server!](https://discordapp.com/oauth2/authorize?client_id=298963480042668032&scope=bot&permissions=-1)");
+                .setDescription("[Use this link to invite me to your server!](https://discordapp.com/oauth2/authorize?client_id=298963480042668032&scope=bot&permissions=305523830)");
 
         context.channel.sendMessage(embed.build()).queue();
     }
