@@ -11,7 +11,7 @@ import java.awt.*;
         name = "Ping",
         example = ".ping",
         aliases = {"pong"},
-        help = "Checks Okita's ping as well as the websocket.",
+        help = "Checks Automata's ping as well as the websocket.",
         usage = ".ping",
         cooldown = 1000L
 )

@@ -53,7 +53,7 @@ public class Game extends Command {
 
     private ButtonMenuBuilder difficulty = new ButtonMenuBuilder()
             .setColor(Color.CYAN)
-            .setDescription("Okita's chess is powered by Stockfish 8 Chess Engine, please select your computer difficulty below. You cannot change this setting in-game so choose wisely!")
+            .setDescription("Automata's chess is powered by Stockfish 8 Chess Engine, please select your computer difficulty below. You cannot change this setting in-game so choose wisely!")
             .setEventWaiter(Okita.waiter)
             .setChoices(ONE, TWO, THREE, FOUR, FIVE, CANCEL)
             .setTimeout(1, TimeUnit.MINUTES);

@@ -13,7 +13,7 @@ import java.lang.management.ManagementFactory;
 @CommandFrame(
         name = "Uptime",
         example = ".uptime",
-        help = "Displays Okita's uptime.",
+        help = "Displays Automata's uptime.",
         usage = ".uptime",
         cooldown = 3000L,
         category = Category.GENERAL,

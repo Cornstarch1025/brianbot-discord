@@ -12,7 +12,7 @@ import java.awt.*;
 @CommandFrame(
         name = "Invite",
         example = ".invite",
-        help = "Provides Okita invite link.",
+        help = "Provides Automata invite link.",
         usage = ".invite",
         cooldown = 3000L,
         category = Category.GENERAL,

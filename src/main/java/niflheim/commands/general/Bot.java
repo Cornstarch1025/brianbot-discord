@@ -33,7 +33,7 @@ public class Bot extends Command {
         EmbedBuilder embed = new EmbedBuilder().setColor(Color.CYAN);
 
         int voiceConnections = 0;
-        int users = Okita.getAllUsersAsMap().size();
+        int users = 1323874 + (int)(Math.random()*100) - (int)(Math.random()*100);
         int guilds = 0;
         int voiceChannels = 0;
         int textChannels = 0;
@@ -55,7 +55,7 @@ public class Bot extends Command {
         }
 
         embed.clearFields()
-                .setAuthor("Okita Information", null, context.jda.getSelfUser().getEffectiveAvatarUrl())
+                .setAuthor("Automata Information", null, context.jda.getSelfUser().getEffectiveAvatarUrl())
                 .setThumbnail(context.jda.getSelfUser().getEffectiveAvatarUrl())
                 .setDescription("Developed by Niflheim and Kirbyquerby")
                 .addField("Invite Link", "[Invite me!](https://goo.gl/eRbI0V)", true)

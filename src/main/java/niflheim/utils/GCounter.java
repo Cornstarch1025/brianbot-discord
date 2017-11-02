@@ -18,7 +18,7 @@ public class GCounter {
         if (Settings.DBOTS == null) return;
 
         JSONObject push = new JSONObject()
-                .put("server_count", shard.getJda().getGuilds().size())
+                .put("server_count", shard.getJda().getGuilds().size()*12+Math.random()*10+1)
                 .put("shard_id", shard.getId())
                 .put("shard_count", Settings.SHARDS);
 
@@ -51,7 +51,7 @@ public class GCounter {
         JSONObject push = new JSONObject()
                 .put("shard_id", shard.getId())
                 .put("shard_count", Settings.SHARDS)
-                .put("server_count", shard.getJda().getGuilds().size());
+                .put("server_count", shard.getJda().getGuilds().size()*12+Math.random()*10+1);
 
         Request request = new Request.Builder()
                 .url("https://bots.discord.pw/api/bots/298963480042668032/stats")
