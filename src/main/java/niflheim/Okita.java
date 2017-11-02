@@ -121,6 +121,7 @@ public class Okita {
         }
 
         executor.scheduleAtFixedRate(() -> {
+            GCounter.guilds = 0;
             for (Shard shard : shards) {
                 GCounter.update(shard);
                 try {

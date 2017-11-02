@@ -9,6 +9,7 @@ import niflheim.commands.Command;
 import niflheim.commands.CommandFrame;
 import niflheim.commands.Scope;
 import niflheim.core.Context;
+import niflheim.utils.GCounter;
 
 import java.awt.*;
 import java.lang.management.ManagementFactory;
@@ -60,7 +61,7 @@ public class Bot extends Command {
                 .setDescription("Developed by Niflheim and Kirbyquerby")
                 .addField("Invite Link", "[Invite me!](https://goo.gl/eRbI0V)", true)
                 .addField("Support Server", "[Join!](https://discord.gg/JBufWFT)", true)
-                .addField("Guilds", Integer.toString(guilds), true)
+                .addField("Guilds", Integer.toString(GCounter.guilds), true)
                 .addField("Voice Connections", Integer.toString(voiceConnections), true)
                 .addField("Text Channels", Integer.toString(textChannels), true)
                 .addField("Voice Channels", Integer.toString(voiceChannels), true)
