@@ -34,7 +34,7 @@ public class Uptime extends Command {
         long h = (ss / (1000 * 60 * 60)) % 24;
         long d = (ss / (1000 * 60 * 60 * 24)) % 365;
 
-        embed.setAuthor("Okita's Uptime", null, context.jda.getSelfUser().getEffectiveAvatarUrl())
+        embed.setAuthor("Automata's Uptime", null, context.jda.getSelfUser().getEffectiveAvatarUrl())
                 .setDescription("Online for: " + Long.toString(d) + "d " + Long.toString(h) + "h " + Long.toString(m) + "m " + Long.toString(s) + "s");
 
         context.channel.sendMessage(embed.build()).queue();

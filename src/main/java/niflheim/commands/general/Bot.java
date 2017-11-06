@@ -18,7 +18,7 @@ import java.lang.management.ManagementFactory;
         name = "Bot",
         example = ".bot",
         aliases = {"okita"},
-        help = "Displays basic Okita information.",
+        help = "Displays basic Automata information.",
         usage = ".bot",
         cooldown = 3000L,
         category = Category.GENERAL,

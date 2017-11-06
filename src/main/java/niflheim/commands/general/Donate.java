@@ -29,7 +29,7 @@ public class Donate extends Command {
         EmbedBuilder embed = new EmbedBuilder().setColor(Color.CYAN)
                 .setAuthor("Donate!", null, context.jda.getSelfUser().getEffectiveAvatarUrl())
                 .setDescription("Server hosting isn't free! Please consider supporting us and unlocking premium features!")
-                .addField("Patreon", "[Patreon Link](https://www.patreon.com/OkitaBot)", true)
+                //.addField("Patreon", "[Patreon Link](https://www.patreon.com/OkitaBot)", true)
                 .addField("Paypal", "[Paypal Link](https://www.paypal.me/Niflheim)", true);
 
         context.channel.sendMessage(embed.build()).queue();

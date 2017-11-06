@@ -33,7 +33,7 @@ public class Help extends Command {
                 context.invalid(this);
                 return;
             case 0:
-                embed.setAuthor("Okita Help", null, context.jda.getSelfUser().getEffectiveAvatarUrl())
+                embed.setAuthor("Automata Help", null, context.jda.getSelfUser().getEffectiveAvatarUrl())
                         .setDescription("Ubiquitous Discord bot developed by Niflheim and Kirbyquerby. Please consider donating as server hosting is not free.")
                         .addField("General - 7", parseModule(Category.GENERAL), false)
                         .addField("Information - 4", parseModule(Category.INFO), false)
