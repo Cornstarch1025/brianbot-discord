@@ -6,12 +6,9 @@ import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.entities.VoiceChannel;
 import niflheim.audio.MusicCore;
-import niflheim.commands.Category;
-import niflheim.commands.Command;
 import niflheim.commands.LoadCommands;
 import niflheim.commands.chess.engine.Stockfish;
 import niflheim.commands.chess.engine.StockfishQueue;
-import niflheim.core.Core;
 import niflheim.core.Shard;
 import niflheim.core.ShardMonitor;
 import niflheim.listeners.EventListener;
@@ -22,9 +19,10 @@ import niflheim.utils.Settings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -65,7 +63,6 @@ public class Okita {
         monitor = new ShardMonitor();
         monitor.setDaemon(true);
         monitor.start();
-
     }
 
     public static List<Guild> getAllGuilds() {
@@ -122,5 +119,17 @@ public class Okita {
                 LOG.error("Error starting Shard " + i + ": ", e);
             }
         }
+
+        executor.scheduleAtFixedRate(() -> {
+            GCounter.guilds = 0;
+            for (Shard shard : shards) {
+                GCounter.update(shard);
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, 0, 30, TimeUnit.MINUTES);
     }
 }
