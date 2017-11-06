@@ -1,12 +1,10 @@
-![alt tag](resources/Okita.jpg)
+# Automata
 
-# Okita
-
-Okita is a ubiquitous Discord bot developed by Niflheim and Kirbyquerby.
+Automata is a ubiquitous Discord bot developed by Niflheim and Kirbyquerby.
 
 ## Quick Start
 
-1. Open a terminal, cd to the directory you want to store the repository, then clone this repository: `git clone https://github.com/NiflheimDev/Okita.git`
+1. Open a terminal, cd to the directory you want to store the repository, then clone this repository: `git clone https://github.com/NiflheimDev/Automata.git`
 2. If you're using command-line, run `gradle run`. Otherwise, open the project in your IDE.
 3. Make sure your config.conf has all the necessary information.
 4. You're all set!
@@ -56,7 +54,7 @@ https://discord.gg/DC5PzXN
 
 ## Authors
 
-* **David Wang** - *Okita* - [NiflheimDev](https://github.com/NiflheimDev)
+* **David Wang** - *Automata* - [NiflheimDev](https://github.com/NiflheimDev)
 * **Nathan Dias** - *Quality Check* - [Kirbyquerby](https://github.com/Kirbyquerby/)
 
 ## License
