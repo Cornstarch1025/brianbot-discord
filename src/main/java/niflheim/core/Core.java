@@ -4,10 +4,14 @@ import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.exceptions.PermissionException;
+import niflheim.commands.Category;
 import niflheim.commands.Command;
 import niflheim.commands.Scope;
 import niflheim.utils.Settings;
-import niflheim.commands.chess.engine.Stockfish;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import org.json.JSONArray;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,6 +19,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 
 public class Core {
+    private static ArrayList<String> upvoted = new ArrayList<>();
     private static ConcurrentHashMap<String, Command> commands = new ConcurrentHashMap<>();
     private static ConcurrentHashMap<String, Command> help = new ConcurrentHashMap<>();
     private static ConcurrentHashMap<String, Long> cooldowns = new ConcurrentHashMap<>();
@@ -38,6 +43,11 @@ public class Core {
         }
 
         Command cmd = commands.get(command);
+
+        if (cmd.getInfo().category() == Category.MUSIC && !hasUpvoted(context.user)) {
+            context.channel.sendMessage("Music is locked, but unlocking is *really* easy! Please support us by upvoting us at https://discordbots.org/bot/298963480042668032 and you'll unlock it permanently! This system keeps the bot **free** so please help us out!").queue();
+            return;
+        }
 
         if (levelCheck(cmd, context) && rateCheck(command, context) && voiceCheck(cmd, context) && permissionCheck(cmd, context)) {
             String[] args = context.message.getContent().split("\\s+");
@@ -73,22 +83,46 @@ public class Core {
         return disabled;
     }
 
-    public static void registerCommand(String trigger, Command command){
+    public static void registerCommand(String trigger, Command command) {
         commands.put(trigger, command);
         help.put(trigger, command);
 
-        for(String alias: command.getInfo().aliases())
+        for (String alias : command.getInfo().aliases())
             commands.put(alias, command);
     }
 
     public static boolean setDisabled(String cmd) {
-        if(disabled.contains(cmd)) {
+        if (disabled.contains(cmd)) {
             disabled.remove(cmd);
             return false;
         }
 
         disabled.add(cmd);
         return true;
+    }
+
+    private static boolean hasUpvoted(User user) {
+        if (upvoted.contains(user.getId()))
+            return true;
+
+        OkHttpClient client = new OkHttpClient();
+
+        Request request = new Request.Builder()
+                .url("https://discordbots.org/bots/298963480042668032/votes?onlyids=1")
+                .get()
+                .addHeader("Authorization", Settings.DBOTS)
+                .build();
+
+        try {
+            Response rawJsonArray = client.newCall(request).execute();
+            JSONArray array = new JSONArray(rawJsonArray.body().source().readUtf8());
+            upvoted.clear();
+            array.iterator().forEachRemaining(it -> upvoted.add(String.valueOf(it)));
+            return array.toList().contains(user.getId());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     private static boolean rateCheck(String command, Context context) {
