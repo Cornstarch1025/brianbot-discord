@@ -45,7 +45,7 @@ public class Core {
         Command cmd = commands.get(command);
 
         if (cmd.getInfo().category() == Category.MUSIC && !hasUpvoted(context.user)) {
-            context.channel.sendMessage("Music is locked, but unlocking is *really* easy! Please support us by upvoting us at https://discordbots.org/bot/298963480042668032 and you'll unlock it permanently! This system keeps the bot **free** so please help us out!").queue();
+            context.channel.sendMessage("Music is locked, but unlocking is *really* easy! Please support us by upvoting us at https://discordbots.org/bot/298963480042668032 (Login with your discord) and you'll unlock it permanently! This system keeps the bot **free** so please help us out!").queue();
             return;
         }
 
@@ -108,7 +108,7 @@ public class Core {
         OkHttpClient client = new OkHttpClient();
 
         Request request = new Request.Builder()
-                .url("https://discordbots.org/bots/298963480042668032/votes?onlyids=1")
+                .url("https://discordbots.org/api/bots/298963480042668032/votes?onlyids=1")
                 .get()
                 .addHeader("Authorization", Settings.DBOTS)
                 .build();
