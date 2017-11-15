@@ -1,4 +1,5 @@
-# Automata
+# Warning: This is an old discontinued build of Automata and is no longer supported. The hosted one is using a private repo.
+# Automata 
 
 Automata is a ubiquitous Discord bot developed by Niflheim and Kirbyquerby.
 
