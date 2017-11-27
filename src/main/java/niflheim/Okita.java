@@ -119,17 +119,5 @@ public class Okita {
                 LOG.error("Error starting Shard " + i + ": ", e);
             }
         }
-
-        executor.scheduleAtFixedRate(() -> {
-            GCounter.guilds = 0;
-            for (Shard shard : shards) {
-                GCounter.update(shard);
-                try {
-                    Thread.sleep(5000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, 0, 30, TimeUnit.MINUTES);
     }
 }
